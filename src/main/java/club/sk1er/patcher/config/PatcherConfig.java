@@ -847,21 +847,21 @@ public class PatcherConfig extends Config {
         description = "Continue to render Player Nametags when the entity is being occluded.",
         category = "Performance", subcategory = "Culling"
     )
-    public static boolean dontCullNametags;
+    public static boolean dontCullNametags = true;
 
     @Switch(
         name = "Don't Cull Entity Nametags",
         description = "Continue to render Entity Nametags when the entity is being occluded.",
         category = "Performance", subcategory = "Culling"
     )
-    public static boolean dontCullEntityNametags;
+    public static boolean dontCullEntityNametags = true;
 
     @Switch(
         name = "Don't Cull Armorstand Nametags",
         description = "Continue to render Armorstand Nametags when the entity is being occluded.",
         category = "Performance", subcategory = "Culling"
     )
-    public static boolean dontCullArmorStandNametags;
+    public static boolean dontCullArmorStandNametags = true;
 
     @Switch(
         name = "Check Armorstand Rules",
