@@ -639,6 +639,13 @@ public class PatcherConfig extends Config {
         Patcher.instance.getPatcherSoundConfig().openGui();
     }
 
+    @Property(
+        type = PropertyType.SWITCH, name = "Natural Capes",
+        description = "Changes some physics in capes to fix rotation bugs and look more natural.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    public static boolean naturalCapes;
+
     // PERFORMANCE
 
     @Switch(
