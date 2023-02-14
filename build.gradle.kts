@@ -54,11 +54,11 @@ val embed by configurations.creating
 configurations.implementation.get().extendsFrom(embed)
 
 dependencies {
-    compileOnly("cc.polyfrost:oneconfig-$platform:0.1.0-alpha+")
+    compileOnly("cc.polyfrost:oneconfig-$platform:0.2.0-alpha+")
     embed("cc.polyfrost:elementa-$platform:+") {
         isTransitive = false
     }
-    embed("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-alpha+")
+    embed("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+")
     embed("com.github.videogame-hacker:Koffee:88ba1b0") {
         isTransitive = false
     }
