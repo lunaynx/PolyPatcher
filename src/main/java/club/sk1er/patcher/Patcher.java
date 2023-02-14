@@ -76,6 +76,7 @@ public class Patcher {
     // betas will be "1.x.x+beta-y" / "1.x.x+branch_beta-y"
     // rcs will be 1.x.x+rc-y
     // extra branches will be 1.x.x+branch-y
+    //MAKE SURE TO UPDATE THIS IN ROOT.GRADLE AS WELL!!!
     public static final String VERSION = "1.8.6+oneconfig_alpha-2";
 
     private final Logger logger = LogManager.getLogger("Patcher");
