@@ -764,8 +764,15 @@ public class PatcherConfig extends Config {
     public static boolean disableMappedItemFrames;
 
     @Switch(
-        name = "Disable Grounded Arrows",
-        description = "Stop arrows that are in the ground from rendering.",
+        name = "Disable Unpickable Grounded Arrows",
+        description = "Stop arrows that are in the ground and cannot be picked up from rendering.",
+        category = "Performance", subcategory = "Entity Rendering"
+    )
+    public static boolean disableUnpickableGroundedArrows;
+
+    @Switch(
+        name = "Disable All Grounded Arrows",
+        description = "Stop arrows that are in the ground from rendering, regardless of state.",
         category = "Performance", subcategory = "Entity Rendering"
     )
     public static boolean disableGroundedArrows;
@@ -1492,6 +1499,12 @@ public class PatcherConfig extends Config {
             ).forEach(property -> hideIf(property, minecraft112));
 
             hideIf("keyboardLayout", () -> !SystemUtils.IS_OS_LINUX);
+
+            addDependency("disableGroundedArrows", "disableUnpickableGroundedArrows");
+            if (disableGroundedArrows && !disableUnpickableGroundedArrows) {
+                disableUnpickableGroundedArrows = true;
+                save();
+            }
         } catch (Exception e) {
             Patcher.instance.getLogger().error("Failed to access property.", e);
         }
