@@ -364,7 +364,7 @@ public class Patcher {
 
         try {
             Class.forName("net.labymod.addons.resourcepacks24.Resourcepacks24", false, getClass().getClassLoader());
-            notifications.push("Patcher", "The LabyMod addon \"Resourcepacks24\" conflicts with Patcher's resourcepack optimizations. Please remove it to make it work again.");
+            notifications.send("Patcher", "The LabyMod addon \"Resourcepacks24\" conflicts with Patcher's resourcepack optimizations. Please remove it to make it work again.");
         } catch (ClassNotFoundException ignored) {
 
         }
