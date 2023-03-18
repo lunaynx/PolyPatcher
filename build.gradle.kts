@@ -31,7 +31,7 @@ loom {
             property("mixin.dumpTargetOnFailure", "true")
             if (project.platform.isForge) {
                 property("fml.coreMods.load", "club.sk1er.patcher.tweaker.PatcherTweaker")
-                arg("--tweakClass", "cc.polyfrost.oneconfigwrapper.OneConfigWrapper")
+                arg("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
                 arg("--mixin", "patcher.mixins.json")
             }
         }
@@ -84,7 +84,7 @@ tasks.jar {
         "FMLAT" to accessTransformerName,
         "FMLCorePluginContainsFMLMod" to "Yes, yes it does",
         "Main-Class" to "club.sk1er.container.ContainerMessage",
-        "TweakClass" to "cc.polyfrost.oneconfigwrapper.OneConfigWrapper",
+        "TweakClass" to "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker",
         "TweakOrder" to "0",
         "MixinConfigs" to "patcher.mixins.json"
     ))
