@@ -232,6 +232,13 @@ public class PatcherConfig extends Config {
     public static float titleOpacity = 1.0F;
 
     @Switch(
+        name = "Remove Water FOV",
+        description = "Remove FOV change when underwater.",
+        category = "Miscellaneous", subcategory = "Field of View"
+    )
+    public static boolean removeWaterFov;
+
+    @Switch(
         name = "FOV Modifier",
         description = "Allow for modifying FOV change states.",
         category = "Miscellaneous", subcategory = "Field of View"
