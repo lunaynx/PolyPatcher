@@ -104,7 +104,13 @@ public class FovHandler {
     @SubscribeEvent
     public void fovModifier(EntityViewRenderEvent.FOVModifier event) {
         if (!PatcherConfig.removeWaterFov) return;
-        if (event.block.getMaterial() != Material.water) return;
+        if (event.
+            //#if MC==10809
+            block
+            //#else
+            //$$ getState()
+            //#endif
+            .getMaterial() != Material.water) return;
         event.setFOV(event.getFOV() * 70.0F / 60.0F);
     }
 
