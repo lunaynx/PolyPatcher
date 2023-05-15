@@ -1430,7 +1430,7 @@ public class PatcherConfig extends Config {
     public static PatcherConfig INSTANCE = new PatcherConfig(); // Needs to be at the bottom or the default values take priority
 
     public PatcherConfig() {
-        super(new Mod("Patcher", ModType.UTIL_QOL, new VigilanceMigrator("./config/patcher.toml")), "patcher.json");
+        super(new Mod("Patcher", ModType.UTIL_QOL, "/patcher.png", new VigilanceMigrator("./config/patcher.toml")), "patcher.json");
         initialize();
 
         Runnable reloadWorld = () -> Minecraft.getMinecraft().renderGlobal.loadRenderers();
