@@ -1422,6 +1422,15 @@ public class PatcherConfig extends Config {
     )
     public static boolean hudCaching;
 
+    @Slider(
+        name = "Cache FPS",
+        description = "The amount of frames to cache for the HUD.",
+        category = "Experimental", subcategory = "HUD Caching",
+        step = 5,
+        min = 5, max = 65
+    )
+    public static int cacheFPS = 60;
+
     // HIDDEN
 
     public static boolean labyModMoment = true;
