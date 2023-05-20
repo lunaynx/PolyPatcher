@@ -1427,9 +1427,9 @@ public class PatcherConfig extends Config {
         description = "The amount of frames to cache for the HUD.",
         category = "Experimental", subcategory = "HUD Caching",
         step = 5,
-        min = 5, max = 65
+        min = 5, max = 60
     )
-    public static int cacheFPS = 60;
+    public static int cacheFPS = 20;
 
     // HIDDEN
 

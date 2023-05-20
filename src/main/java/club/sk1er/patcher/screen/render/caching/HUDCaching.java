@@ -29,20 +29,35 @@ public class HUDCaching {
     public static Framebuffer hudFramebuffer;
     //public static Framebuffer screenFramebuffer;
     private static boolean hudDirty = true;
-    private static boolean screenDirty = true;
+    //private static boolean screenDirty = true;
     public static boolean renderingCacheOverride;
 
     //private static long nextScreenRefresh;
     private static long nextHudRefresh;
 
+    private static int lastHotbar;
+
+    private static boolean isChatOpen = false;
+
     @SubscribeEvent
     public void tick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END && PatcherConfig.hudCaching) {
-            if (!OpenGlHelper.isFramebufferEnabled() && mc.thePlayer != null) {
-                String statement = (!ClassTransformer.optifineVersion.equals("NONE") ?
-                    "\n&cTry to disable OptiFine's Fast Render/Anti-aliasing option." : "") + "\n&7Are Framebuffers supported?: &e&l" + OpenGlHelper.framebufferSupported;
-                ChatUtilities.sendMessage("&cFramebuffers appear to be disabled, automatically disabling HUDCaching." + statement);
-                PatcherConfig.hudCaching = false;
+            if (mc.thePlayer != null) {
+                if (!OpenGlHelper.isFramebufferEnabled()) {
+                    String statement = (!ClassTransformer.optifineVersion.equals("NONE") ?
+                        "\n&cTry to disable OptiFine's Fast Render/Anti-aliasing option." : "") + "\n&7Are Framebuffers supported?: &e&l" + OpenGlHelper.framebufferSupported;
+                    ChatUtilities.sendMessage("&cFramebuffers appear to be disabled, automatically disabling HUDCaching." + statement);
+                    PatcherConfig.hudCaching = false;
+                } else {
+                    if (lastHotbar != mc.thePlayer.inventory.currentItem) {
+                        hudDirty = true;
+                        lastHotbar = mc.thePlayer.inventory.currentItem;
+                    }
+                    if (isChatOpen != mc.ingameGUI.getChatGUI().getChatOpen()) {
+                        hudDirty = true;
+                        isChatOpen = mc.ingameGUI.getChatGUI().getChatOpen();
+                    }
+                }
             }
         }
     }
