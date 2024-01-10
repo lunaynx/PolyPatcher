@@ -66,6 +66,7 @@ loom {
                 property("fml.coreMods.load", "club.sk1er.patcher.tweaker.PatcherTweaker")
                 programArgs("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
                 property("mixin.debug.export", "true")
+                programArgs("--mixin", "mixins.${mod_id}.json")
             }
         }
     }

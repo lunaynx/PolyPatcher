@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: "temurin"
-          java-version: "16"
+          java-version: "17"
 
       - uses: actions/cache@v2
         with:
@@ -25,8 +25,8 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             **/loom-cache
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-v2-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            ${{ runner.os }}-gradle-v2-
 
       - run: ./gradlew --no-daemon build
