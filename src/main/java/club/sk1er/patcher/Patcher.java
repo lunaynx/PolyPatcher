@@ -66,7 +66,7 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Mod(modid = "patcher", name = "Patcher", version = Patcher.VERSION, clientSideOnly = true)
+@Mod(modid = "@ID@", name = "@NAME@", version = Patcher.VERSION, clientSideOnly = true)
 public class Patcher {
 
     @Mod.Instance("patcher")
@@ -76,8 +76,7 @@ public class Patcher {
     // betas will be "1.x.x+beta-y" / "1.x.x+branch_beta-y"
     // rcs will be 1.x.x+rc-y
     // extra branches will be 1.x.x+branch-y
-    //MAKE SURE TO UPDATE THIS IN ROOT.GRADLE AS WELL!!!
-    public static final String VERSION = "1.8.7+oneconfig_alpha-3";
+    public static final String VERSION = "@VER@";
 
     private final Logger logger = LogManager.getLogger("Patcher");
     private final File logsDirectory = new File(Minecraft.getMinecraft().mcDataDir + File.separator + "logs" + File.separator);
