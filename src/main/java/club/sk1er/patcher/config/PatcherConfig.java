@@ -200,20 +200,9 @@ public class PatcherConfig extends Config {
     )
     public static boolean hideFireOverlayWithFireResistance;
 
-    @Switch(
-        name = "Disable Titles",
-        description = "Stop titles from appearing.",
-        category = "Miscellaneous", subcategory = "Overlays"
-    )
     @VigilanceName(name = "Disable Titles", category = "Miscellaneous", subcategory = "Titles")
     public static boolean disableTitles;
 
-    @Slider(
-        name = "Title Scale",
-        description = "Set the scale for titles.",
-        category = "Miscellaneous", subcategory = "Titles",
-        min = 0.0F, max = 1.0F
-    )
     public static float titleScale = 1.0F;
 
     @Switch(
@@ -223,12 +212,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean autoTitleScale;
 
-    @Slider(
-        name = "Title Opacity",
-        description = "Change the opacity of titles.",
-        category = "Miscellaneous", subcategory = "Titles",
-        min = 0F, max = 1.0F
-    )
     public static float titleOpacity = 1.0F;
 
     @Switch(
@@ -337,11 +320,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean removeGroundFoliage;
 
-    @Switch(
-        name = "Show Own Nametag",
-        description = "See your nametag in third person.",
-        category = "Miscellaneous", subcategory = "Rendering"
-    )
     public static boolean showOwnNametag;
 
     @Switch(
@@ -559,25 +537,10 @@ public class PatcherConfig extends Config {
     )
     public static boolean alternateTextShadow;
 
-    @Switch(
-        name = "Add Text Shadow to Nametags",
-        description = "Render nametags with shadowed text.",
-        category = "Miscellaneous", subcategory = "Rendering"
-    )
     public static boolean shadowedNametagText;
 
-    @Switch(
-        name = "Add Text Shadow to Actionbar",
-        description = "Render actionbar messages with shadowed text.",
-        category = "Miscellaneous", subcategory = "Rendering"
-    )
     public static boolean shadowedActionbarText;
 
-    @Switch(
-        name = "Add Background to Actionbar",
-        description = "Render a background behind the actionbar.",
-        category = "Miscellaneous", subcategory = "Rendering"
-    )
     public static boolean actionbarBackground;
 
     @Info(
@@ -1066,7 +1029,7 @@ public class PatcherConfig extends Config {
         description = "Remove the limit on how many messages can show up in chat.",
         category = "Screens", subcategory = "Chat"
     )
-    public static boolean removeChatMessageLimit;
+    public static boolean removeChatMessageLimit = true;
 
     @Info(
         text = "Transparent Chat can positively impact performance.",
@@ -1448,6 +1411,41 @@ public class PatcherConfig extends Config {
     public PatcherConfig() {
         super(new Mod("Patcher", ModType.UTIL_QOL, "/patcher.png", new VigilanceMigrator("./config/patcher.toml")), "patcher.json");
         initialize();
+
+        boolean modified = false;
+
+        if (showOwnNametag) {
+            showOwnNametag = false;
+            modified = true;
+        }
+        if (shadowedNametagText) {
+            shadowedNametagText = false;
+            modified = true;
+        }
+        if (shadowedActionbarText) {
+            shadowedActionbarText = false;
+            modified = true;
+        }
+        if (disableTitles) {
+            disableTitles = false;
+            modified = true;
+        }
+        if (titleScale != 1) {
+            titleScale = 1;
+            modified = true;
+        }
+        if (titleOpacity != 1) {
+            titleOpacity = 1;
+            modified = true;
+        }
+        if (actionbarBackground) {
+            actionbarBackground = false;
+            modified = true;
+        }
+
+        if (modified) {
+            save();
+        }
 
         Runnable reloadWorld = () -> Minecraft.getMinecraft().renderGlobal.loadRenderers();
         addListener("fullbright", reloadWorld);
