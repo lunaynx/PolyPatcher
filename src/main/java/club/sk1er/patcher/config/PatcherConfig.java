@@ -1061,6 +1061,13 @@ public class PatcherConfig extends Config {
     )
     public static boolean extendedChatLength = true;
 
+    @Switch(
+        name = "Remove Chat Message Limit",
+        description = "Remove the limit on how many messages can show up in chat.",
+        category = "Screens", subcategory = "Chat"
+    )
+    public static boolean removeChatMessageLimit;
+
     @Info(
         text = "Transparent Chat can positively impact performance.",
         category = "Screens", subcategory = "Chat",
