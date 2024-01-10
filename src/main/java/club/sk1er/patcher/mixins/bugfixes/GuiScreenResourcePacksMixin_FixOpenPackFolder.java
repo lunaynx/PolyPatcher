@@ -1,6 +1,6 @@
 package club.sk1er.patcher.mixins.bugfixes;
 
-import gg.essential.universal.UDesktop;
+import cc.polyfrost.oneconfig.libs.universal.UDesktop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreenResourcePacks;
 import org.spongepowered.asm.mixin.Mixin;
