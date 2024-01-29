@@ -261,13 +261,6 @@ public class PatcherConfig extends Config {
     public static float slownessFovModifierFloat = 1;
 
     @Switch(
-        name = "Toggle Tab",
-        description = "Hold tab open without needing to hold down the tab key.",
-        category = "Miscellaneous", subcategory = "Tab"
-    )
-    public static boolean toggleTab;
-
-    @Switch(
         name = "Disable Hotbar Scrolling",
         description = "Remove the ability to scroll through your hotbar.",
         category = "Miscellaneous", subcategory = "General"
@@ -422,13 +415,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "OptiFine"
     )
     public static boolean useVanillaMetricsRenderer = true;
-
-    @Switch(
-        name = "Number Ping",
-        description = "Show a readable ping number in tab instead of bars.",
-        category = "Miscellaneous", subcategory = "Tab"
-    )
-    public static boolean numberPing = true;
 
     @Switch(
         name = "Numerical Enchantments",
@@ -978,22 +964,6 @@ public class PatcherConfig extends Config {
     )
     public static float containerOpacity = 1.0f;
 
-    @Slider(
-        name = "Tab Opacity",
-        description = "Change the tab list opacity.",
-        category = "Screens", subcategory = "Tab",
-        min = 0.0f, max = 1.0f
-    )
-    public static float tabOpacity = 1.0F;
-
-    @Slider(
-        name = "Tab Player Count",
-        description = "Change how many players can display on tab.",
-        category = "Screens", subcategory = "Tab",
-        min = 10, max = 120
-    )
-    public static int tabPlayerCount = 80;
-
     @Switch(
         name = "GUI Crosshair",
         description = "Stop rendering the crosshair when in a GUI.",
@@ -1073,21 +1043,6 @@ public class PatcherConfig extends Config {
         category = "Screens", subcategory = "Chat"
     )
     public static boolean extendChatBackground = true;
-
-    @Switch(
-        name = "Tab Height",
-        description = "Move the tab overlay down the selected amount of pixels when there's an active bossbar.",
-        category = "Screens", subcategory = "Tab"
-    )
-    public static boolean tabHeightAllow = true;
-
-    @Slider(
-        name = "Set Tab Height",
-        description = "Choose how many pixels tab will move down when there's an active bossbar.",
-        category = "Screens", subcategory = "Tab",
-        min = 10, max = 24
-    )
-    public static int tabHeight = 10;
 
     @Switch(
         name = "Compact Chat",
@@ -1456,7 +1411,6 @@ public class PatcherConfig extends Config {
             addDependency("smartFullbright", "fullbright");
             addDependency("unfocusedFPSAmount", "unfocusedFPS");
             addDependency("instantFullscreen", "windowedFullscreen");
-            addDependency("tabHeight", "tabHeightAllow");
             addDependency("consecutiveCompactChat", "compactChat");
             addDependency("compactChatTime", "compactChat");
             addDependency("timestampsFormat", "timestamps");

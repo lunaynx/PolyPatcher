@@ -18,7 +18,6 @@ import club.sk1er.patcher.screen.render.caching.HUDCaching;
 import club.sk1er.patcher.screen.render.overlay.ArmorStatusRenderer;
 import club.sk1er.patcher.screen.render.overlay.GlanceRenderer;
 import club.sk1er.patcher.screen.render.overlay.ImagePreview;
-import club.sk1er.patcher.screen.render.overlay.OverlayHandler;
 import club.sk1er.patcher.screen.render.overlay.metrics.MetricsRenderer;
 import club.sk1er.patcher.screen.render.title.TitleFix;
 import club.sk1er.patcher.tweaker.PatcherTweaker;
@@ -126,7 +125,7 @@ public class Patcher {
 
         registerEvents(
             this, soundHandler, dropModifier, audioSwitcher,
-            new OverlayHandler(), new EntityRendering(), new FovHandler(),
+            new EntityRendering(), new FovHandler(),
             new ChatHandler(), new GlanceRenderer(), new EntityCulling(),
             new ArmorStatusRenderer(), new PatcherMenuEditor(), new ImagePreview(),
             new TitleFix(), new LinuxKeybindFix(),
@@ -323,7 +322,6 @@ public class Patcher {
 
     private void fixSettings() {
         if (PatcherConfig.customZoomSensitivity > 1.0F) PatcherConfig.customZoomSensitivity = 1.0F;
-        if (PatcherConfig.tabOpacity > 1.0F) PatcherConfig.tabOpacity = 1.0F;
         if (PatcherConfig.imagePreviewWidth > 1.0F) PatcherConfig.imagePreviewWidth = 0.5F;
         if (PatcherConfig.previewScale > 1.0F) PatcherConfig.previewScale = 1.0F;
         if (PatcherConfig.unfocusedFPSAmount < 15) PatcherConfig.unfocusedFPSAmount = 15;
