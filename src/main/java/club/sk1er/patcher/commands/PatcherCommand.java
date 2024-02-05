@@ -133,7 +133,7 @@ public class PatcherCommand {
     }
 
     @SubCommand(description = "Rescan devices for RawInput")
-    public void rawinput_rescan() {
+    public void rescan() {
         MouseHelperHook mouseHelper = ((MouseHelperHook) UMinecraft.getMinecraft().mouseHelper);
         mouseHelper.getPolyfrost$rawInput().updateControllerEnvironment();
     }
