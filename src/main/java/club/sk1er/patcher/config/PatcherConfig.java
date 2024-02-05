@@ -338,6 +338,71 @@ public class PatcherConfig extends Config {
     public static boolean hideAuraOnInvisibleWither;
 
     @Switch(
+        name = "Zoom Adjustment",
+        description = "Scroll when using OptiFine's zoom to adjust the zoom level.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean scrollToZoom = true;
+
+    @Switch(
+        name = "Remove Smooth Camera While Zoomed",
+        description = "Remove the smooth camera effect when using zoom.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean normalZoomSensitivity;
+
+    @Switch(
+        name = "Render Hand While Zoomed",
+        description = "Keep your hand on screen when you zoom in.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean renderHandWhenZoomed;
+
+    @Slider(
+        name = "Zoom Sensitivity",
+        description = "Use a custom mouse sensitivity value when zoomed in.",
+        category = "Miscellaneous", subcategory = "OptiFine",
+        min = 0F, max = 1F
+    )
+    public static float customZoomSensitivity = 1.0F;
+
+    @Switch(
+        name = "Dynamic Zoom Sensitivity",
+        description = "Reduce your mouse sensitivity the more you zoom in.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean dynamicZoomSensitivity;
+
+    @Switch(
+        name = "Smooth Zoom Animation",
+        description = "Add a smooth animation when you zoom in and out.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean smoothZoomAnimation;
+
+    @Switch(
+        name = "Smooth Scroll-to-Zoom Animation",
+        description = "Add a smooth animation when you scroll in and out while zoomed.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean smoothZoomAnimationWhenScrolling;
+
+    @Dropdown(
+        name = "Smooth Zoom Function",
+        description = "Change the smoothing function used in the smooth zooming animation.",
+        category = "Miscellaneous", subcategory = "OptiFine",
+        options = {"In Out Quad", "In Out Circular", "Out Quint"}
+    )
+    public static int smoothZoomAlgorithm = 0;
+
+    @Switch(
+        name = "Toggle to Zoom",
+        description = "Make OptiFine's zoom key a toggle instead of requiring you to hold it.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean toggleToZoom;
+
+    @Switch(
         name = "Simplify FPS Counter",
         description = "Remove the extra FPS counter added by OptiFine.",
         category = "Miscellaneous", subcategory = "OptiFine"
@@ -519,14 +584,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "General"
     )
     public static boolean staticItems;
-
-    @Switch(
-        name = "Raw Input"
-    )
-    public static boolean rawInput = true;
-
-    @NonProfileSpecific
-    public static boolean osWarned = false;
 
     @Button(
         name = "Modify Every Sound",
@@ -1368,6 +1425,9 @@ public class PatcherConfig extends Config {
             ).forEach(property -> addDependency(property, "allowFovModifying"));
 
             addDependency("logOptimizerLength", "logOptimizer");
+            addDependency("dynamicZoomSensitivity", "scrollToZoom");
+            addDependency("smoothZoomAnimation", "scrollToZoom");
+            addDependency("smoothZoomAlgorithm", "smoothZoomAnimation");
 
             Arrays.asList(
                 "cullingInterval", "smartEntityCulling", "dontCullNametags",
@@ -1392,8 +1452,10 @@ public class PatcherConfig extends Config {
 
             Supplier<Boolean> noOptiFine = () -> ClassTransformer.optifineVersion.equals("NONE");
             Arrays.asList(
-                "normalFpsCounter", "useVanillaMetricsRenderer",
-                "smartFullbright", "smartEntityCulling"
+                "scrollToZoom", "normalZoomSensitivity", "customZoomSensitivity", "smoothZoomAnimation",
+                "smoothZoomAnimationWhenScrolling", "smoothZoomAlgorithm", "toggleToZoom", "normalFpsCounter",
+                "useVanillaMetricsRenderer", "renderHandWhenZoomed", "smartFullbright", "smartEntityCulling",
+                "dynamicZoomSensitivity"
             ).forEach(property -> hideIf(property, noOptiFine));
 
             Supplier<Boolean> smoothFontDetected = () -> ClassTransformer.smoothFontDetected;

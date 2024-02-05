@@ -99,6 +99,21 @@ public class EntityRendererTransformer implements PatcherTransformer {
 
                     break;
                 }
+
+                case "func_78476_b":
+                case "renderHand": {
+                    ListIterator<AbstractInsnNode> iterator = methodNode.instructions.iterator();
+                    while (iterator.hasNext()) {
+                        AbstractInsnNode next = iterator.next();
+
+                        if (next instanceof MethodInsnNode && next.getOpcode() == Opcodes.INVOKESPECIAL) {
+                            String methodName = mapMethodNameFromNode(next);
+                            if (methodName.equals("getFOVModifier") || methodName.equals("func_78481_a")) {
+                                methodNode.instructions.insert(next, new MethodInsnNode(Opcodes.INVOKESTATIC, getHookClass("EntityRendererHook"), "getHandFOVModifier", "(F)F", false));
+                            }
+                        }
+                    }
+                }
             }
         }
     }
