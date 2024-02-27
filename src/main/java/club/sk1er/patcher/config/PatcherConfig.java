@@ -163,6 +163,20 @@ public class PatcherConfig extends Config {
     public static boolean smartFullbright = true;
 
     @Switch(
+        name = "Disable Night Vision",
+        description = "Completely disables the effects of night vision.",
+        category = "Miscellaneous", subcategory = "Overlays"
+    )
+    public static boolean disableNightVision = false;
+
+    @Switch(
+        name = "Cleaner Night Vision",
+        description = "Makes the night vision effect fade out instead of an epilepsy inducing effect.",
+        category = "Miscellaneous", subcategory = "Overlays"
+    )
+    public static boolean cleanerNightVision = false;
+
+    @Switch(
         name = "Nausea Effect",
         description = "Remove the nether portal effect appearing when clearing nausea.",
         category = "Miscellaneous", subcategory = "Overlays"
@@ -1417,6 +1431,7 @@ public class PatcherConfig extends Config {
 
         try {
             addDependency("smartFullbright", "fullbright");
+            addDependency("cleanerNightVision", "disableNightVision", () -> !disableNightVision);
             addDependency("unfocusedFPSAmount", "unfocusedFPS");
             addDependency("instantFullscreen", "windowedFullscreen");
             addDependency("consecutiveCompactChat", "compactChat");
