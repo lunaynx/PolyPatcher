@@ -171,7 +171,7 @@ public class PatcherConfig extends Config {
 
     @Switch(
         name = "Cleaner Night Vision",
-        description = "Makes the night vision effect fade out instead of an epilepsy inducing effect.",
+        description = "Makes the night vision effect fade out instead of a flashing effect.",
         category = "Miscellaneous", subcategory = "Overlays"
     )
     public static boolean cleanerNightVision = false;
