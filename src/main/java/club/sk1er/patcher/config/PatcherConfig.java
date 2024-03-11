@@ -798,7 +798,7 @@ public class PatcherConfig extends Config {
     public static boolean unstackedItems;
 
     @Info(
-        text = "Due to the way OptiFine shaders work, we are unable to make Entity Culling compatible.",
+        text = "Due to the way OptiFine shaders work, we are unable to make Entity Culling compatible with them.",
         category = "Performance", subcategory = "Culling",
         type = InfoType.ERROR,
         size = 2
@@ -826,6 +826,20 @@ public class PatcherConfig extends Config {
         category = "Performance", subcategory = "Culling"
     )
     public static boolean smartEntityCulling = true;
+
+    @Switch(
+        name = "Don't Cull Ender Dragons",
+        description = "Continue to render Ender Dragons when the entity is being occluded.",
+        category = "Performance", subcategory = "Culling"
+    )
+    public static boolean dontCullEnderDragons = true;
+
+    @Switch(
+        name = "Don't Cull Withers",
+        description = "Continue to render Withers when the entity is being occluded.",
+        category = "Performance", subcategory = "Culling"
+    )
+    public static boolean dontCullWithers = true;
 
     @Switch(
         name = "Don't Cull Player Nametags",
