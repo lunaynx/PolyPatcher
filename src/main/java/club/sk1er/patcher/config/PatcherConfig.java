@@ -594,13 +594,6 @@ public class PatcherConfig extends Config {
     public static boolean removeViewBobbing;
 
     @Switch(
-        name = "Remove Vertical Bobbing",
-        description = "While using View Bobbing, remove the vertical bobbing like in 1.14+.",
-        category = "Miscellaneous", subcategory = "General"
-    )
-    public static boolean removeVerticalViewBobbing;
-
-    @Switch(
         name = "Remove Map Bobbing",
         description = "While using View Bobbing, remove the hand bobbing when holding a map.",
         category = "Miscellaneous", subcategory = "General"
