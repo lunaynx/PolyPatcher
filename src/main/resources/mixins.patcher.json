@@ -133,6 +133,7 @@
     "features.FontRenderMixin_ShadowTypes",
     "features.GuiAchievementMixin_CancelRender",
     "features.GuiChatMixin_ExtendedChatLength",
+    "features.GuiChatMixin_SafeChatClicksHistory",
     "features.GuiContainerMixin_ClickOutOfContainers",
     "features.GuiContainerMixin_DropModifierKey",
     "features.GuiIngameForgeMixin_ActionbarText",

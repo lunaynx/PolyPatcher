@@ -74,6 +74,7 @@ public class ImagePreview {
 
                 if (!found) return;
             } catch (MalformedURLException e) {
+                Patcher.instance.getLogger().error("Error during url lookup: " + value, e);
                 return;
             }
         }

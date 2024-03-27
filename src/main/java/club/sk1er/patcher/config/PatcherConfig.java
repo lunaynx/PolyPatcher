@@ -594,6 +594,13 @@ public class PatcherConfig extends Config {
     public static boolean removeViewBobbing;
 
     @Switch(
+        name = "Remove Vertical Bobbing",
+        description = "While using View Bobbing, remove the vertical bobbing like in 1.14+.",
+        category = "Miscellaneous", subcategory = "General"
+    )
+    public static boolean removeVerticalViewBobbing;
+
+    @Switch(
         name = "Remove Map Bobbing",
         description = "While using View Bobbing, remove the hand bobbing when holding a map.",
         category = "Miscellaneous", subcategory = "General"
@@ -1242,8 +1249,15 @@ public class PatcherConfig extends Config {
     public static boolean safeChatClicks;
 
     @Switch(
+        name = "Safe Chat Clicks History",
+        description = "Adds commands sent from clicking chat messages to the chat history.",
+        category = "Screens", subcategory = "Chat"
+    )
+    public static boolean safeChatClicksHistory;
+
+    @Switch(
         name = "Smart Disconnect",
-        description = "Choose between disconnecting or relogging when clicking the disconnect button.",
+        description = "Choose between disconnecting or relogging when clicking the disconnect button.\n§eOnly works on Multiplayer servers.",
         category = "Screens", subcategory = "General"
     )
     public static boolean smartDisconnect;
