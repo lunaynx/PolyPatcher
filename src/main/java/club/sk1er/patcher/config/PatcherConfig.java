@@ -453,13 +453,6 @@ public class PatcherConfig extends Config {
     public static boolean betterRomanNumerals = true;
 
     @Switch(
-        name = "Clean View",
-        description = "Stop rendering your potion effect particles.",
-        category = "Miscellaneous", subcategory = "Rendering"
-    )
-    public static boolean cleanView;
-
-    @Switch(
         name = "Windowed Fullscreen",
         description = "Implement Windowed Fullscreen in Minecraft, allowing you to drag your mouse outside the window.",
         category = "Miscellaneous", subcategory = "Window"
@@ -479,13 +472,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "Overlays"
     )
     public static boolean removeWaterOverlay;
-
-    @Switch(
-        name = "Disable Breaking Particles",
-        description = "Remove block-breaking particles for visibility.",
-        category = "Miscellaneous", subcategory = "Rendering"
-    )
-    public static boolean disableBlockBreakParticles;
 
     @Switch(
         name = "Disable Lightning Bolts",
@@ -668,21 +654,6 @@ public class PatcherConfig extends Config {
         category = "Performance", subcategory = "World"
     )
     public static boolean batchModelRendering = true;
-
-    @Switch(
-        name = "Static Particle Color",
-        description = "Disable particle lighting checks each frame.",
-        category = "Performance", subcategory = "Particles"
-    )
-    public static boolean staticParticleColor = true;
-
-    @Slider(
-        name = "Max Particle Limit",
-        description = "Stop additional particles from appearing when there are too many at once.",
-        category = "Performance", subcategory = "Particles",
-        min = 1, max = 10000
-    )
-    public static int maxParticleLimit = 4000;
 
     @Switch(
         name = "Optimized Font Renderer",
