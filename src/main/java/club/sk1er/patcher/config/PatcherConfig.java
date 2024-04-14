@@ -289,13 +289,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean disableHotbarScrolling;
 
-    @Switch(
-        name = "Crosshair Perspective",
-        description = "Remove the crosshair when in third person.",
-        category = "Miscellaneous", subcategory = "General"
-    )
-    public static boolean crosshairPerspective;
-
     @Slider(
         name = "Unfocused Sounds",
         description = "Change the volume of sounds when you're not tabbed into the window.",
@@ -501,13 +494,6 @@ public class PatcherConfig extends Config {
         min = 1, max = 90
     )
     public static int logOptimizerLength = 30;
-
-    @Switch(
-        name = "Remove Inverted Colors from Crosshair",
-        description = "Remove the inverted color effect on the crosshair.",
-        category = "Miscellaneous", subcategory = "Overlays"
-    )
-    public static boolean removeInvertFromCrosshair;
 
     @Info(
         text = "1.12 Farm Selection Boxes only works on Hypixel & Singleplayer.",
@@ -970,13 +956,6 @@ public class PatcherConfig extends Config {
         min = 0, max = 1.0F
     )
     public static float containerOpacity = 1.0f;
-
-    @Switch(
-        name = "GUI Crosshair",
-        description = "Stop rendering the crosshair when in a GUI.",
-        category = "Screens", subcategory = "General"
-    )
-    public static boolean guiCrosshair;
 
     @Info(
         text = "Supported servers for 1.11 chat length are servers that support 1.11 or above.",
@@ -1485,7 +1464,7 @@ public class PatcherConfig extends Config {
             Arrays.asList(
                 "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "farmSelectionBoxesInfo",
                 "leftHandInFirstPerson", "extendedChatLength", "chatPosition",
-                "parallaxFix", "crosshairPerspective", "extendChatBackground", "vanillaGlassPanes"
+                "parallaxFix", "extendChatBackground", "vanillaGlassPanes"
             ).forEach(property -> hideIf(property, minecraft112));
 
             hideIf("keyboardLayout", () -> !SystemUtils.IS_OS_LINUX);
