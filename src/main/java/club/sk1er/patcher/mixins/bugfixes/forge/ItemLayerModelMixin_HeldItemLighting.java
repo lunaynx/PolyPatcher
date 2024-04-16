@@ -1,12 +1,25 @@
 package club.sk1er.patcher.mixins.bugfixes.forge;
 
-import com.google.common.base.Optional;
+import
+//#if MC==10809
+    com.google.common.base.Optional;
+//#else
+//$$ java.util.Optional;
+//#endif
+
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.ItemLayerModel;
-import net.minecraftforge.client.model.TRSRTransformation;
+
+//#if MC==10809
+import net.minecraftforge.client.model.
+//#else
+//$$ import net.minecraftforge.common.model.
+//#endif
+    TRSRTransformation;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
