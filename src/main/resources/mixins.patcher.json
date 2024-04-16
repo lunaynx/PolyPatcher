@@ -233,6 +233,7 @@
     "performance.ResourcePackRepositoryMixin_FasterSearching",
     "performance.TexturedQuadMixin_BatchDraw",
     "performance.TileEntityMobSpawnerRendererMixin_EntityCulling",
+    "performance.TileEntityRendererDispatcherMixin_BatchDraw",
     "performance.VisGraphMixin_LimitScan",
     "performance.WorldClientMixin_AnimationTick",
     "performance.WorldMixin_Optimization",
