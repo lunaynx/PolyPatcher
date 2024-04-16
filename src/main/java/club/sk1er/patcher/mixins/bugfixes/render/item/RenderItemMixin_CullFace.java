@@ -24,7 +24,13 @@ public abstract class RenderItemMixin_CullFace {
     @Shadow protected abstract boolean isThereOneNegativeScale(ItemTransformVec3f itemTranformVec);
 
 
-    @Inject(method = "renderItemModelTransform", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RenderItem;renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V"))
+    @Inject(method =
+        //#if MC==10809
+        "renderItemModelTransform"
+        //#else
+        //$$ "renderItemModel"
+        //#endif
+        , at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RenderItem;renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V"))
     private void patcher$cullFace(ItemStack stack, IBakedModel model, ItemCameraTransforms.TransformType cameraTransformType, CallbackInfo ci) {
         if (isThereOneNegativeScale(model.getItemCameraTransforms().getTransform(cameraTransformType))) {
             GlStateManager.
