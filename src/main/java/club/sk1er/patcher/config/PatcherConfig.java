@@ -617,6 +617,12 @@ public class PatcherConfig extends Config {
     )
     public static boolean naturalCapes;
 
+    @Switch(
+        name = "Smooth Scrolling",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    public static boolean smoothScrolling;
+
     // PERFORMANCE
 
     @Switch(
