@@ -176,12 +176,12 @@ public class PatcherConfig extends Config {
     )
     public static boolean cleanerNightVision = false;
 
-    @Switch(
-        name = "Nausea Effect",
-        description = "Remove the nether portal effect appearing when clearing nausea.",
-        category = "Miscellaneous", subcategory = "Overlays"
-    )
-    public static boolean nauseaEffect;
+//    @Switch(
+//        name = "Nausea Effect",
+//        description = "Remove the nether portal effect appearing when clearing nausea.",
+//        category = "Miscellaneous", subcategory = "Overlays"
+//    )
+//    public static boolean nauseaEffect;
 
     @Switch(
         name = "Disable Achievements",
@@ -198,21 +198,21 @@ public class PatcherConfig extends Config {
     )
     public static float fireOverlayHeight;
 
-    @Slider( // todo add percentage
-        name = "Fire Overlay Opacity",
+    @Slider(
+        name = "Fire Overlay Opacity (%)",
         description = "Change the opacity of the fire overlay.",
         category = "Miscellaneous", subcategory = "Overlays",
-        min = 0F, max = 1.0F
+        min = 0, max = 100
     )
-    public static float fireOverlayOpacity = 1.0F;
+    public static int fireOverlayOpacity = 100;
 
-    @Slider( // todo add percentage
-        name = "Pumpkin Overlay Opacity",
+    @Slider(
+        name = "Pumpkin Overlay Opacity (%)",
         description = "Change the opacity of the pumpkin overlay.",
         category = "Miscellaneous", subcategory = "Overlays",
-        min = 0F, max = 1.0F
+        min = 0, max = 100
     )
-    public static float pumpkinOverlayOpacity = 1.0F;
+    public static int pumpkinOverlayOpacity = 100;
 
     @Switch(
         name = "Hide Fire Overlay with Fire Resistance",
@@ -235,6 +235,12 @@ public class PatcherConfig extends Config {
     public static boolean autoTitleScale;
 
     public static float titleOpacity = 1.0F;
+
+    // fog
+
+
+
+    // fov
 
     @Switch(
         name = "Remove Water FOV",
@@ -338,12 +344,27 @@ public class PatcherConfig extends Config {
     public static boolean cleanProjectiles;
 
     @Slider(
-        name = "Ridden Horse Opacity",
+        name = "Ridden Horse Opacity (%)",
         description = "Change the opacity of the horse you're currently riding for visibility.",
         category = "Miscellaneous", subcategory = "Rendering",
-        min = 0F, max = 1.0F
+        min = 0F, max = 100
     )
-    public static float riddenHorseOpacity = 1.0F;
+    public static int riddenHorseOpacity = 100;
+
+    @Slider(
+        name = "Distortion Effects (%)",
+        description = "Changes the distortion effects (e.g. Nausea and nether portal distortion).",
+        category = "Miscellaneous", subcategory = "Rendering",
+        min = 0, max = 100
+    )
+    public static int distortionEffect = 100;
+
+    @Slider(
+        name = "Water Fog Density (%)",
+        category = "Miscellaneous", subcategory = "Fog",
+        min = 0, max = 100
+    )
+    public static int waterDensity = 100;
 
     @Switch(
         name = "Hide Aura on Invisible Withers",

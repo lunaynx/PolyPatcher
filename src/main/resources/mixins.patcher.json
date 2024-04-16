@@ -121,6 +121,8 @@
     "features.EntityPlayerMixin_NaturalCapes",
     "features.EntityPlayerSPMixin_NauseaEffect",
     "features.EntityRendererMixin_CameraPerspective",
+    "features.EntityRendererMixin_Distortion",
+    "features.EntityRendererMixin_Fog",
     "features.EntityRendererMixin_NametagBackground",
     "features.EntityRendererMixin_NightVisionEffect",
     "features.EntityRendererMixin_ParallaxFix",
