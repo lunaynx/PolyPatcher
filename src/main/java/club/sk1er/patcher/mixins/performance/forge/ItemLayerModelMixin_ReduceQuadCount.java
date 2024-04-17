@@ -34,31 +34,31 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
     private static int patcher$size;
 
     @Shadow
-    private static BakedQuad buildQuad( VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  float x0,  float y0,  float z0,  float u0,  float v0,  float x1,  float y1,  float z1,  float u1,  float v1,  float x2,  float y2,  float z2,  float u2,  float v2,  float x3,  float y3,  float z3,  float u3,  float v3) {
+    private static BakedQuad buildQuad(VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  float x0,  float y0,  float z0,  float u0,  float v0,  float x1,  float y1,  float z1,  float u1,  float v1,  float x2,  float y2,  float z2,  float u2,  float v2,  float x3,  float y3,  float z3,  float u3,  float v3) {
         return null;
     }
 
     @Shadow
-    private static BakedQuad buildSideQuad( VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  TextureAtlasSprite sprite,  int u,  int v) {
+    private static BakedQuad buildSideQuad(VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  TextureAtlasSprite sprite,  int u,  int v) {
         return null;
     }
 
     @Inject(method = "getQuadsForSprite", at = @At("HEAD"), cancellable = true)
-    public void patcher$reduceQuadCount( int tint,  TextureAtlasSprite sprite,  VertexFormat format,  Optional<TRSRTransformation> transform,  CallbackInfoReturnable<ImmutableList<BakedQuad>> cir) {
-         ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
-         int uMax = sprite.getIconWidth();
-         int vMax = sprite.getIconHeight();
-         FaceDataHook faceData = new FaceDataHook(uMax, vMax);
+    public void patcher$reduceQuadCount(int tint,  TextureAtlasSprite sprite,  VertexFormat format,  Optional<TRSRTransformation> transform,  CallbackInfoReturnable<ImmutableList<BakedQuad>> cir) {
+        ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
+        int uMax = sprite.getIconWidth();
+        int vMax = sprite.getIconHeight();
+        FaceDataHook faceData = new FaceDataHook(uMax, vMax);
         boolean translucent = false;
         for (int f = 0; f < sprite.getFrameCount(); ++f) {
-             int[] pixels = sprite.getFrameTextureData(f)[0];
-             boolean[] ptv = new boolean[uMax];
+            int[] pixels = sprite.getFrameTextureData(f)[0];
+            boolean[] ptv = new boolean[uMax];
             Arrays.fill(ptv, true);
             for (int v = 0; v < vMax; ++v) {
                 boolean ptu = true;
                 for (int u = 0; u < uMax; ++u) {
-                     int alpha = patcher$getAlpha(pixels, uMax, vMax, u, v);
-                     boolean t = alpha / 255.0f <= 0.1f;
+                    int alpha = patcher$getAlpha(pixels, uMax, vMax, u, v);
+                    boolean t = alpha / 255.0f <= 0.1f;
                     if (!t && alpha < 255) {
                         translucent = true;
                     }
@@ -87,13 +87,13 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
                 }
             }
         }
-        for ( EnumFacing facing : patcher$HORIZONTALS) {
+        for (EnumFacing facing : patcher$HORIZONTALS) {
             for (int v = 0; v < vMax; ++v) {
                 int uStart = 0;
                 int uEnd = uMax;
                 boolean building = false;
                 for (int u3 = 0; u3 < uMax; ++u3) {
-                     boolean face = faceData.get(facing, u3, v);
+                    boolean face = faceData.get(facing, u3, v);
                     if (!translucent) {
                         if (face) {
                             if (!building) {
@@ -104,7 +104,7 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
                         }
                     }
                     else if (building && !face) {
-                         int off = (facing == EnumFacing.DOWN) ? 1 : 0;
+                        int off = (facing == EnumFacing.DOWN) ? 1 : 0;
                         builder.add(patcher$buildSideQuad(format, transform, facing, tint, sprite, uStart, v + off, u3 - uStart));
                         building = false;
                     }
@@ -114,18 +114,18 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
                     }
                 }
                 if (building) {
-                     int off2 = (facing == EnumFacing.DOWN) ? 1 : 0;
+                    int off2 = (facing == EnumFacing.DOWN) ? 1 : 0;
                     builder.add(patcher$buildSideQuad(format, transform, facing, tint, sprite, uStart, v + off2, uEnd - uStart));
                 }
             }
         }
-        for ( EnumFacing facing : patcher$VERTICALS) {
+        for (EnumFacing facing : patcher$VERTICALS) {
             for (int u2 = 0; u2 < uMax; ++u2) {
                 int vStart = 0;
                 int vEnd = vMax;
                 boolean building = false;
                 for (int v2 = 0; v2 < vMax; ++v2) {
-                     boolean face = faceData.get(facing, u2, v2);
+                    boolean face = faceData.get(facing, u2, v2);
                     if (!translucent) {
                         if (face) {
                             if (!building) {
@@ -136,7 +136,7 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
                         }
                     }
                     else if (building && !face) {
-                         int off = (facing == EnumFacing.EAST) ? 1 : 0;
+                        int off = (facing == EnumFacing.EAST) ? 1 : 0;
                         builder.add(patcher$buildSideQuad(format, transform, facing, tint, sprite, u2 + off, vStart, v2 - vStart));
                         building = false;
                     }
@@ -146,7 +146,7 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
                     }
                 }
                 if (building) {
-                     int off2 = (facing == EnumFacing.EAST) ? 1 : 0;
+                    int off2 = (facing == EnumFacing.EAST) ? 1 : 0;
                     builder.add(patcher$buildSideQuad(format, transform, facing, tint, sprite, u2 + off2, vStart, vEnd - vStart));
                 }
             }
@@ -157,18 +157,18 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
     }
 
     @Unique
-    private static BakedQuad patcher$buildSideQuad( VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  TextureAtlasSprite sprite,  int u,  int v,  int size) {
+    private static BakedQuad patcher$buildSideQuad(VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  TextureAtlasSprite sprite,  int u,  int v,  int size) {
         patcher$size = size;
         return buildSideQuad(format, transform, side, tint, sprite, u, v);
     }
 
     @Unique
-    private static int patcher$getAlpha( int[] pixels,  int uMax,  int vMax,  int u,  int v) {
+    private static int patcher$getAlpha(int[] pixels,  int uMax,  int vMax,  int u,  int v) {
         return pixels[u + (vMax - 1 - v) * uMax] >> 24 & 0xFF;
     }
 
     @Inject(method = "buildSideQuad", at = @At("HEAD"), cancellable = true)
-    private static void patcher$reduceQuadCount2( VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  TextureAtlasSprite sprite,  int u,  int v,  CallbackInfoReturnable<BakedQuad> cir) {
+    private static void patcher$reduceQuadCount2(VertexFormat format,  Optional<TRSRTransformation> transform,  EnumFacing side,  int tint,  TextureAtlasSprite sprite,  int u,  int v,  CallbackInfoReturnable<BakedQuad> cir) {
         int width = sprite.getIconWidth();
         int height = sprite.getIconHeight();
         float x0 = u / (float)width;
@@ -204,7 +204,7 @@ public abstract class ItemLayerModelMixin_ReduceQuadCount {
     }
 
     @Unique
-    private static EnumFacing patcher$remap( EnumFacing side) {
+    private static EnumFacing patcher$remap(EnumFacing side) {
         return (side.getAxis() == EnumFacing.Axis.Y) ? side.getOpposite() : side;
     }
     //#endif

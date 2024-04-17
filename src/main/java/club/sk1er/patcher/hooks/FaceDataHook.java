@@ -13,18 +13,22 @@ public class FaceDataHook {
     public FaceDataHook(final int uMax, final int vMax) {
         this.data = new EnumMap<>(EnumFacing.class);
         this.vMax = vMax;
-        this.data.put(EnumFacing.WEST, new BitSet(uMax * vMax));
-        this.data.put(EnumFacing.EAST, new BitSet(uMax * vMax));
-        this.data.put(EnumFacing.UP, new BitSet(uMax * vMax));
-        this.data.put(EnumFacing.DOWN, new BitSet(uMax * vMax));
+        int size = uMax * vMax;
+        BitSet initialData = new BitSet(size);
+        this.data.put(EnumFacing.WEST, initialData);
+        this.data.put(EnumFacing.EAST, new BitSet(size));
+        this.data.put(EnumFacing.UP, new BitSet(size));
+        this.data.put(EnumFacing.DOWN, new BitSet(size));
     }
 
     public void set(final EnumFacing facing, final int u, final int v) {
-        this.data.get(facing).set(this.getIndex(u, v));
+        BitSet dataSet = this.data.get(facing);
+        dataSet.set(getIndex(u, v));
     }
 
     public boolean get(final EnumFacing facing, final int u, final int v) {
-        return this.data.get(facing).get(this.getIndex(u, v));
+        BitSet dataSet = this.data.get(facing);
+        return dataSet.get(getIndex(u, v));
     }
 
     private int getIndex(final int u, final int v) {
