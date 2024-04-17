@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(RenderManager.class)
 public class RenderManagerMixin_PerspectiveViewFix {
 
+    //#if MC==10809
     @Shadow public float playerViewX;
 
     @Inject(
@@ -38,5 +39,6 @@ public class RenderManagerMixin_PerspectiveViewFix {
     private void patcher$addCorrectView(World worldIn, FontRenderer textRendererIn, Entity livingPlayerIn, Entity pointedEntityIn, GameSettings optionsIn, float partialTicks, CallbackInfo ci) {
         playerViewX = -playerViewX;
     }
+    //#endif
 
 }
