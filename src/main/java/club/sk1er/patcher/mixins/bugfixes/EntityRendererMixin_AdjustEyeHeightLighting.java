@@ -10,9 +10,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(EntityRenderer.class)
 public class EntityRendererMixin_AdjustEyeHeightLighting {
 
+    //#if MC==10809
     @Redirect(method = "updateRenderer", at = @At(value = "NEW", target = "(Lnet/minecraft/entity/Entity;)Lnet/minecraft/util/BlockPos;"))
     private BlockPos patcher$accountForEyes(Entity source) {
         return new BlockPos(source.getPositionEyes(1.0F));
     }
+    //#endif
 
 }
