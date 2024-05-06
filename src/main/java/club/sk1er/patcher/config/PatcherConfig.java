@@ -1380,6 +1380,8 @@ public class PatcherConfig extends Config {
 
     public static boolean labyModMoment = true;
     public static String selectedAudioDevice = "";
+    public static boolean tabHeightAllow = false;
+    public static int tabHeight = 0;
 
     public static PatcherConfig INSTANCE = new PatcherConfig(); // Needs to be at the bottom or the default values take priority
 
