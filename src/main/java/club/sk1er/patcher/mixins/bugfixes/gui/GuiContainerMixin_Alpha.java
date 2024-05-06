@@ -17,10 +17,10 @@ public class GuiContainerMixin_Alpha {
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
     }
 
-    @Inject(method = "drawScreen", at = @At(value = "TAIL"))
-    private void end(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        GlStateManager.disableAlpha();
-        GlStateManager.disableBlend();
-    }
+//    @Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/inventory/GuiContainer;drawGuiContainerBackgroundLayer(FII)V", shift = At.Shift.AFTER))
+//    private void end(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
+//        GlStateManager.disableAlpha();
+//        GlStateManager.disableBlend();
+//    }
 
 }
