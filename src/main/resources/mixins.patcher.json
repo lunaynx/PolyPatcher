@@ -96,6 +96,8 @@
     "bugfixes.forge.BlockMixin_VanillaSlabChests",
     "bugfixes.forge.BlockPaneMixin_VanillaPanes",
     "bugfixes.forge.ClientCommandHandlerMixin_CaseCommands",
+    "bugfixes.gui.GuiContainerMixin_Alpha",
+    "bugfixes.gui.GuiScreenBookMixin",
     "bugfixes.modelfixes.ModelPlayerMixin_FixedTransformations",
     "bugfixes.modelfixes.ModelSkeletonMixin_FixedHeldItemTransformations",
     "bugfixes.modelfixes.ModelVillagerMixin_ResolveRobeHeight",
