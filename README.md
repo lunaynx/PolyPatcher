@@ -1,3 +1,10 @@
+# PolyPatcher
+<img src="https://wsrv.nl/?url=https%3A%2F%2Fpolyfrost.org%2Fimg%2Fcompact_vector.svg&n=-1&w=1000" width=56 /> ![Dev Workflow Status](https://img.shields.io/github/v/release/Polyfrost/Patcher.svg?style=for-the-badge&color=1452cc&label=release)
+
+Patcher is a Forge mod for 1.8.9 & 1.12.2 created to improve your all-around Minecraft experience, bringing tons of Quality of Life additions, performance improvements, and tons of Vanilla bug fixes.
+
+This work, "Patcher", is adapted from ["Patcher"](https://sk1er.club/mods/patcher) by [Sk1erLLC](https://sk1er.club), used under CC BY-NC-SA 4.0. "Patcher" is licensed under CC BY-NC-SA 4.0 by Polyfrost. This is a fork of Sk1erLLC's original mod, adding various changes and improvements as well as using OneConfig instead of Essential. For the original, please go [here](https://sk1er.club/mods/patcher) to download the mod.
+
 ## Feature List
 
 <details>
