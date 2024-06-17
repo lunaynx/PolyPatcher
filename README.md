@@ -1,9 +1,9 @@
 # PolyPatcher
-<img src="https://wsrv.nl/?url=https%3A%2F%2Fpolyfrost.org%2Fimg%2Fcompact_vector.svg&n=-1&w=1000" width=56 /> ![Dev Workflow Status](https://img.shields.io/github/v/release/Polyfrost/Patcher.svg?style=for-the-badge&color=1452cc&label=release)
+<img src="https://wsrv.nl/?url=https%3A%2F%2Fpolyfrost.org%2Fimg%2Fcompact_vector.svg&n=-1&w=1000" width=56 /> ![Dev Workflow Status](https://img.shields.io/github/v/release/Polyfrost/PolyPatcher.svg?style=for-the-badge&color=1452cc&label=release)
 
-Patcher is a Forge mod for 1.8.9 & 1.12.2 created to improve your all-around Minecraft experience, bringing tons of Quality of Life additions, performance improvements, and tons of Vanilla bug fixes.
+PolyPatcher is a Forge mod for 1.8.9 & 1.12.2 created to improve your all-around Minecraft experience, bringing tons of Quality of Life additions, performance improvements, and tons of Vanilla bug fixes.
 
-This work, "Patcher", is adapted from ["Patcher"](https://sk1er.club/mods/patcher) by [Sk1erLLC](https://sk1er.club), used under CC BY-NC-SA 4.0. "Patcher" is licensed under CC BY-NC-SA 4.0 by Polyfrost. This is a fork of Sk1erLLC's original mod, adding various changes and improvements as well as using OneConfig instead of Essential. For the original, please go [here](https://sk1er.club/mods/patcher) to download the mod.
+This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/patcher) by [Sk1erLLC](https://sk1er.club), used under CC BY-NC-SA 4.0. "PolyPatcher" is licensed under CC BY-NC-SA 4.0 by Polyfrost. This is a fork of Sk1erLLC's original mod, adding various changes and improvements as well as using OneConfig instead of Essential. For the original, please go [here](https://sk1er.club/mods/patcher) to download the mod.
 
 ## Feature List
 
@@ -209,7 +209,7 @@ This work, "Patcher", is adapted from ["Patcher"](https://sk1er.club/mods/patche
 
 # Replacement Mods
 
-Patcher reproduces the functionality of these mods and as such, they are no longer needed.
+PolyPatcher reproduces the functionality of these mods and as such, they are no longer needed.
 
 This list may not always be up-to-date. To view an updated list, click [here](https://static.sk1er.club/patcher/duplicate_mods.json)
 - **Case Commands**
@@ -234,5 +234,3 @@ This list may not always be up-to-date. To view an updated list, click [here](ht
 - **NoScroll**
 
 </details>
-
-[![crayons 🙂](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://sk1er.club/mods/patcher "Click for Patcher download")

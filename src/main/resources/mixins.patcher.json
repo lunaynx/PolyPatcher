@@ -165,6 +165,7 @@
     "features.MinecraftMixin_SeparateResources",
     "features.MinecraftMixin_WindowedFullscreen",
     "features.MinecraftServerMixin_Metrics",
+    "features.ModListMixin_SendPolyPatcherModId",
     "features.RenderArrowMixin_CancelRender",
     "features.RenderEntityItemMixin_StaticItems",
     "features.RenderEntityItemMixin_UnstackedItems",
