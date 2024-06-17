@@ -235,6 +235,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - Add "Cleaner Night Vision" and "Disable Night Vision"
 - Add Invert Hotbar Scrolling
 - Add Prevent Overflow Hotbar Scrolling
+- Add "Disable Falling Blocks"
 - Replace "Remove Container Background" with "Container Background Opacity"
 - Replace "Nausea Effect" toggle to "Distortion Effects" slider
 - Split "Disable Grounded Arrows" into two settings ("Disable Unpickable Grounded Arrows" and "Disable All Grounded Arrows")
