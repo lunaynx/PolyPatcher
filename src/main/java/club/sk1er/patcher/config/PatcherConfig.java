@@ -181,7 +181,7 @@ public class PatcherConfig extends Config {
 //        description = "Remove the nether portal effect appearing when clearing nausea.",
 //        category = "Miscellaneous", subcategory = "Overlays"
 //    )
-//    public static boolean nauseaEffect;
+    public static boolean nauseaEffect;
 
     @Switch(
         name = "Disable Achievements",
@@ -198,13 +198,15 @@ public class PatcherConfig extends Config {
     )
     public static float fireOverlayHeight;
 
+    public static float fireOverlayOpacity = 1F;
+
     @Slider(
         name = "Fire Overlay Opacity (%)",
         description = "Change the opacity of the fire overlay.",
         category = "Miscellaneous", subcategory = "Overlays",
         min = 0, max = 100
     )
-    public static int fireOverlayOpacity = 100;
+    public static int fireOverlayOpacityI = 100;
 
     @Switch(
         name = "Hide Fire Overlay with Fire Resistance",
@@ -361,13 +363,15 @@ public class PatcherConfig extends Config {
     )
     public static boolean cleanProjectiles;
 
+    public static float riddenHorseOpacity = 1.0F;
+
     @Slider(
         name = "Ridden Horse Opacity (%)",
         description = "Change the opacity of the horse you're currently riding for visibility.",
         category = "Miscellaneous", subcategory = "Rendering",
         min = 0F, max = 100
     )
-    public static int riddenHorseOpacity = 100;
+    public static int riddenHorseOpacityI = 100;
 
     @Slider(
         name = "Distortion Effects (%)",
@@ -1433,6 +1437,7 @@ public class PatcherConfig extends Config {
 
     public static boolean labyModMoment = true;
     public static String selectedAudioDevice = "";
+    public static int patcherVersion = 0;
 
     public static PatcherConfig INSTANCE = new PatcherConfig(); // Needs to be at the bottom or the default values take priority
 
@@ -1471,6 +1476,7 @@ public class PatcherConfig extends Config {
             modified = true;
         }
         if (removeContainerBackground) {
+            removeContainerBackground = false;
             containerBackgroundOpacity = 0F;
             modified = true;
         }
@@ -1546,6 +1552,22 @@ public class PatcherConfig extends Config {
 
         if (guiCrosshair) {
             guiCrosshair = false;
+            modified = true;
+        }
+
+        if (nauseaEffect) {
+            nauseaEffect = false;
+            distortionEffect = 0;
+            modified = true;
+        }
+
+        if (patcherVersion == 0) {
+            patcherVersion = 1;
+            if (PatcherConfig.fireOverlayHeight < -0.5F || PatcherConfig.fireOverlayHeight > 1.5F) {
+                PatcherConfig.fireOverlayHeight = 0.0F;
+            }
+            fireOverlayOpacityI = (int) (fireOverlayOpacity * 100);
+            riddenHorseOpacityI = (int) (riddenHorseOpacity * 100);
             modified = true;
         }
 

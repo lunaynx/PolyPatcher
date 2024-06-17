@@ -326,9 +326,6 @@ public class Patcher {
         if (PatcherConfig.imagePreviewWidth > 1.0F) PatcherConfig.imagePreviewWidth = 0.5F;
         if (PatcherConfig.previewScale > 1.0F) PatcherConfig.previewScale = 1.0F;
         if (PatcherConfig.unfocusedFPSAmount < 15) PatcherConfig.unfocusedFPSAmount = 15;
-        if (PatcherConfig.fireOverlayHeight < -0.5F || PatcherConfig.fireOverlayHeight > 1.5F) {
-            PatcherConfig.fireOverlayHeight = 0.0F;
-        }
 
         this.forceSaveConfig();
     }
