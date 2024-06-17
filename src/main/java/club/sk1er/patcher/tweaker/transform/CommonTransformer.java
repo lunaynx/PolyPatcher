@@ -4,7 +4,6 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
 /**
  * Used to string across multiple transformers that all do the same thing

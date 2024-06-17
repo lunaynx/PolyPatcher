@@ -392,9 +392,7 @@ public class Patcher {
             if (!replacements.isEmpty()) {
                 for (String replacement : replacements) {
                     if (replacement.equals("Clean View")) {
-                        notifications.send("PolyPatcher", replacement + " can be removed as it is replaced by OverflowParticles. Click here to download OverflowParticles", 6f, () -> {
-                            UDesktop.browse(URI.create("https://modrinth.com/mod/overflowparticles"));
-                        });
+                        notifications.send("PolyPatcher", replacement + " can be removed as it is replaced by OverflowParticles. Click here to download OverflowParticles", 6f, () -> UDesktop.browse(URI.create("https://modrinth.com/mod/overflowparticles")));
                         continue;
                     }
                     notifications.send("PolyPatcher", replacement + " can be removed as it is replaced by PolyPatcher.", 6f);
