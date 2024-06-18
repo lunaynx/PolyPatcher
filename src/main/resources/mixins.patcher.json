@@ -142,7 +142,6 @@
     "features.GuiChatMixin_SafeChatClicksHistory",
     "features.GuiContainerMixin_ClickOutOfContainers",
     "features.GuiContainerMixin_DropModifierKey",
-    "features.GuiIngameForgeMixin_ActionbarText",
     "features.GuiIngameForgeMixin_TitleRendering",
     "features.GuiIngameMixin_PumpkinBlurRendering",
     "features.GuiMultiplayerMixin_FastServerJoin",

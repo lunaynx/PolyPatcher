@@ -98,13 +98,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean fixedAlexArms = true;
 
-    @Switch(
-        name = "Fix Actionbar Overlap",
-        description = "Prevents the actionbar text from rendering above the armor/health bar.",
-        category = "Bug Fixes", subcategory = "Rendering"
-    )
-    public static boolean fixActionbarOverlap;
-
     @Dropdown(
         name = "Keyboard Layout",
         description = "The layout of your keyboard, used to fix input bugs accordingly.",
@@ -1572,6 +1565,14 @@ public class PatcherConfig extends Config {
     // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
     public static int tabHeightOld = 10;
 
+    @Switch(
+        name = "Fix Actionbar Overlap",
+        description = "Prevents the actionbar text from rendering above the armor/health bar.",
+        category = "Bug Fixes", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean fixActionbarOverlapOld;
+
     @Exclude public static boolean nauseaEffect = false;
     @Exclude public static float fireOverlayOpacity = 1F;
     @Exclude public static boolean disableTitles = false;
@@ -1598,6 +1599,7 @@ public class PatcherConfig extends Config {
     @Exclude public static int tabPlayerCount = 80;
     @Exclude public static boolean tabHeightAllow = false;
     @Exclude public static int tabHeight = 0;
+    @Exclude public static boolean fixActionbarOverlap = false;
 
 
     public static boolean labyModMoment = true;
@@ -1606,7 +1608,7 @@ public class PatcherConfig extends Config {
     public static PatcherConfig INSTANCE = new PatcherConfig(); // Needs to be at the bottom or the default values take priority
 
     public PatcherConfig() {
-        super(new Mod("PolyPatcher", ModType.UTIL_QOL, "/patcher.png", new VigilanceMigrator("./config/patcher.toml")), "patcher.json");
+        super(new Mod("PolyPatcher", ModType.UTIL_QOL, "/patcher.svg", new VigilanceMigrator("./config/patcher.toml")), "patcher.json");
         initialize();
 
         boolean modified = false;
@@ -1640,32 +1642,33 @@ public class PatcherConfig extends Config {
         addListener("removeGroundFoliage", reloadWorld);
         addListener("vanillaGlassPanes", reloadWorld);
 
-        hideIf("showOwnNametag", () -> true);
-        hideIf("shadowedNametagText", () -> true);
-        hideIf("shadowedActionbarText", () -> true);
-        hideIf("disableTitles", () -> true);
-        hideIf("titleScale", () -> true);
-        hideIf("titleOpacity", () -> true);
-        hideIf("actionbarBackground", () -> true);
-        hideIf("removeContainerBackground", () -> true);
-        hideIf("disableNametagBoxes", () -> true);
-        hideIf("toggleTab", () -> true);
-        hideIf("numberPing", () -> true);
-        hideIf("tabOpacity", () -> true);
-        hideIf("tabPlayerCount", () -> true);
-        hideIf("tabHeightAllow", () -> true);
-        hideIf("tabHeight", () -> true);
-        hideIf("removeVerticalViewBobbing", () -> true);
-        hideIf("cleanView", () -> true);
-        hideIf("disableBlockBreakParticles", () -> true);
-        hideIf("staticParticleColor", () -> true);
-        hideIf("maxParticleLimit", () -> true);
-        hideIf("crosshairPerspective", () -> true);
-        hideIf("removeInvertFromCrosshair", () -> true);
-        hideIf("guiCrosshair", () -> true);
-        hideIf("nauseaEffect", () -> true);
-        hideIf("riddenHorseOpacity", () -> true);
-        hideIf("fireOverlayOpacity", () -> true);
+        hideIf("nauseaEffectOld", () -> true);
+        hideIf("fireOverlayOpacityOld", () -> true);
+        hideIf("disableTitlesOld", () -> true);
+        hideIf("titleScaleOld", () -> true);
+        hideIf("titleOpacityOld", () -> true);
+        hideIf("toggleTabOld", () -> true);
+        hideIf("crosshairPerspectiveOld", () -> true);
+        hideIf("showOwnNametagOld", () -> true);
+        hideIf("riddenHorseOpacityOld", () -> true);
+        hideIf("numberPingOld", () -> true);
+        hideIf("cleanViewOld", () -> true);
+        hideIf("disableBlockBreakParticlesOld", () -> true);
+        hideIf("removeInvertFromCrosshairOld", () -> true);
+        hideIf("shadowedNametagTextOld", () -> true);
+        hideIf("shadowedActionbarTextOld", () -> true);
+        hideIf("actionbarBackgroundOld", () -> true);
+        hideIf("removeVerticalViewBobbingOld", () -> true);
+        hideIf("staticParticleColorOld", () -> true);
+        hideIf("maxParticleLimitOld", () -> true);
+        hideIf("disableNametagBoxesOld", () -> true);
+        hideIf("removeContainerBackgroundOld", () -> true);
+        hideIf("guiCrosshairOld", () -> true);
+        hideIf("tabOpacityOld", () -> true);
+        hideIf("tabPlayerCountOld", () -> true);
+        hideIf("tabHeightAllowOld", () -> true);
+        hideIf("tabHeightOld", () -> true);
+        hideIf("fixActionbarOverlapOld", () -> true);
 
         try {
             addDependency("smartFullbright", "fullbright");
