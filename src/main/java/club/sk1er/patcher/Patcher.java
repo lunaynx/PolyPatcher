@@ -322,6 +322,9 @@ public class Patcher {
     }
 
     private void fixSettings() {
+        if (PatcherConfig.fireOverlayHeight < -0.5F || PatcherConfig.fireOverlayHeight > 1.5F) {
+            PatcherConfig.fireOverlayHeight = 0.0F;
+        }
         if (PatcherConfig.customZoomSensitivity > 1.0F) PatcherConfig.customZoomSensitivity = 1.0F;
         if (PatcherConfig.imagePreviewWidth > 1.0F) PatcherConfig.imagePreviewWidth = 0.5F;
         if (PatcherConfig.previewScale > 1.0F) PatcherConfig.previewScale = 1.0F;

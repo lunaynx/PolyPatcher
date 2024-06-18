@@ -98,6 +98,7 @@
     "bugfixes.forge.ClientCommandHandlerMixin_CaseCommands",
     "bugfixes.gui.GuiContainerMixin_Alpha",
     "bugfixes.gui.GuiScreenBookMixin",
+    "bugfixes.levelhead.AboveHeadRender_ReFixNametagPerspective",
     "bugfixes.modelfixes.ModelPlayerMixin_FixedTransformations",
     "bugfixes.modelfixes.ModelSkeletonMixin_FixedHeldItemTransformations",
     "bugfixes.modelfixes.ModelVillagerMixin_ResolveRobeHeight",

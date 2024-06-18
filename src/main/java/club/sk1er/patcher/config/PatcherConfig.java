@@ -3,6 +3,7 @@ package club.sk1er.patcher.config;
 import cc.polyfrost.oneconfig.config.Config;
 import cc.polyfrost.oneconfig.config.annotations.Number;
 import cc.polyfrost.oneconfig.config.annotations.*;
+import cc.polyfrost.oneconfig.config.core.ConfigUtils;
 import cc.polyfrost.oneconfig.config.data.InfoType;
 import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
@@ -12,8 +13,11 @@ import club.sk1er.patcher.Patcher;
 import club.sk1er.patcher.tweaker.ClassTransformer;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeVersion;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SystemUtils;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
@@ -176,13 +180,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean cleanerNightVision = false;
 
-//    @Switch(
-//        name = "Nausea Effect",
-//        description = "Remove the nether portal effect appearing when clearing nausea.",
-//        category = "Miscellaneous", subcategory = "Overlays"
-//    )
-    public static boolean nauseaEffect;
-
     @Switch(
         name = "Disable Achievements",
         description = "Remove achievement notifications.",
@@ -197,8 +194,6 @@ public class PatcherConfig extends Config {
         min = -0.5F, max = 1.5F
     )
     public static float fireOverlayHeight;
-
-    public static float fireOverlayOpacity = 1F;
 
     @Slider(
         name = "Fire Overlay Opacity (%)",
@@ -224,19 +219,12 @@ public class PatcherConfig extends Config {
     )
     public static int pumpkinOverlayOpacity = 100;
 
-    @VigilanceName(name = "Disable Titles", category = "Miscellaneous", subcategory = "Titles")
-    public static boolean disableTitles;
-
-    public static float titleScale = 1.0F;
-
     @Switch(
         name = "Automatically Scale Title",
         description = "Automatically scale titles if the title goes over the screen.",
         category = "Miscellaneous", subcategory = "Titles"
     )
     public static boolean autoTitleScale;
-
-    public static float titleOpacity = 1.0F;
 
     // fog
 
@@ -290,8 +278,6 @@ public class PatcherConfig extends Config {
     )
     public static float slownessFovModifierFloat = 1;
 
-    public static boolean toggleTab;
-
     @Switch(
         name = "Disable Hotbar Scrolling",
         description = "Remove the ability to scroll through your hotbar.",
@@ -312,8 +298,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "General"
     )
     public static boolean preventOverflowHotbarScrolling;
-
-    public static boolean crosshairPerspective;
 
     @Slider(
         name = "Unfocused Sounds",
@@ -354,16 +338,12 @@ public class PatcherConfig extends Config {
     )
     public static boolean removeGroundFoliage;
 
-    public static boolean showOwnNametag;
-
     @Switch(
         name = "Clean Projectiles",
         description = "Show projectiles 2 ticks after they're shot to stop them from obstructing your view.",
         category = "Miscellaneous", subcategory = "Rendering"
     )
     public static boolean cleanProjectiles;
-
-    public static float riddenHorseOpacity = 1.0F;
 
     @Slider(
         name = "Ridden Horse Opacity (%)",
@@ -474,8 +454,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean useVanillaMetricsRenderer = true;
 
-    public static boolean numberPing;
-
     @Switch(
         name = "Numerical Enchantments",
         description = "Use readable numbers instead of Roman numerals on enchants.",
@@ -489,8 +467,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "Rendering"
     )
     public static boolean betterRomanNumerals = true;
-
-    public static boolean cleanView;
 
     @Switch(
         name = "Windowed Fullscreen",
@@ -512,8 +488,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "Overlays"
     )
     public static boolean removeWaterOverlay;
-
-    public static boolean disableBlockBreakParticles;
 
     @Switch(
         name = "Disable Lightning Bolts",
@@ -544,8 +518,6 @@ public class PatcherConfig extends Config {
     )
     public static int logOptimizerLength = 30;
 
-    public static boolean removeInvertFromCrosshair;
-
     @Info(
         text = "1.12 Farm Selection Boxes only works on Hypixel & Singleplayer.",
         category = "Miscellaneous", subcategory = "Blocks",
@@ -567,12 +539,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "Rendering"
     )
     public static boolean alternateTextShadow;
-
-    public static boolean shadowedNametagText;
-
-    public static boolean shadowedActionbarText;
-
-    public static boolean actionbarBackground;
 
     @Info(
         text = "Disable Text Shadow can positively impact performance.",
@@ -615,8 +581,6 @@ public class PatcherConfig extends Config {
         category = "Miscellaneous", subcategory = "General"
     )
     public static boolean removeViewBobbing;
-
-    public static boolean removeVerticalViewBobbing;
 
     @Switch(
         name = "Remove Map Bobbing",
@@ -701,10 +665,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean batchModelRendering = true;
 
-    public static boolean staticParticleColor = false;
-
-    public static int maxParticleLimit = 4000;
-
     @Switch(
         name = "Optimized Font Renderer",
         description = "Use modern rendering techniques to improve the font renderer performance.",
@@ -774,6 +734,7 @@ public class PatcherConfig extends Config {
         description = "Stop arrows that are in the ground from rendering, regardless of state.",
         category = "Performance", subcategory = "Entity Rendering"
     )
+    @VigilanceName(name = "Disable Grounded Arrows", category = "Performance", subcategory = "Entity Rendering")
     public static boolean disableGroundedArrows;
 
     @Switch(
@@ -810,8 +771,6 @@ public class PatcherConfig extends Config {
         category = "Performance", subcategory = "General"
     )
     public static boolean disableEndPortals;
-
-    public static boolean disableNametagBoxes;
 
     @Switch(
         name = "Unstacked Items",
@@ -1008,13 +967,6 @@ public class PatcherConfig extends Config {
         return inventoryScale == 0 ? -1 : inventoryScale;
     }
 
-//    @Switch(
-//        name = "Remove Container Background",
-//        description = "Remove the dark background inside a container.",
-//        category = "Screens", subcategory = "General"
-//    )
-    public static boolean removeContainerBackground = false;
-
     @Slider(
         name = "Container Background Opacity (%)",
         description = "Change the opacity of the dark background inside a container, or remove it completely.",
@@ -1030,12 +982,6 @@ public class PatcherConfig extends Config {
         min = 0F, max = 100F
     )
     public static float containerOpacity = 100F;
-
-    public static boolean guiCrosshair;
-
-    public static float tabOpacity = 1.0F;
-
-    public static int tabPlayerCount = 80;
 
     @Info(
         text = "Supported servers for 1.11 chat length are servers that support 1.11 or above.",
@@ -1109,10 +1055,6 @@ public class PatcherConfig extends Config {
         category = "Screens", subcategory = "Chat"
     )
     public static boolean extendChatBackground = true;
-
-    public static boolean tabHeightAllow = true;
-
-    public static int tabHeight = 10;
 
     @Switch(
         name = "Compact Chat",
@@ -1435,9 +1377,231 @@ public class PatcherConfig extends Config {
 
     // HIDDEN
 
+    @Switch(
+        name = "Nausea Effect",
+        description = "Remove the nether portal effect appearing when clearing nausea.",
+        category = "Miscellaneous", subcategory = "Overlays"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean nauseaEffectOld;
+    @Slider(
+        name = "Fire Overlay Opacity",
+        description = "Change the opacity of the fire overlay.",
+        category = "Miscellaneous", subcategory = "Overlays",
+        min = 0F, max = 1.0F
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static float fireOverlayOpacityOld = 1F;
+    @Switch(
+        name = "Disable Titles",
+        description = "Stop titles from appearing.",
+        category = "Miscellaneous", subcategory = "Overlays"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean disableTitlesOld;
+    @Slider(
+        name = "Title Scale",
+        description = "Set the scale for titles.",
+        category = "Miscellaneous", subcategory = "Titles",
+        min = 0F, max = 1F
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static float titleScaleOld = 1.0F;
+    @Slider(
+        name = "Title Opacity",
+        description = "Change the opacity of titles.",
+        category = "Miscellaneous", subcategory = "Titles",
+        min = 0F, max = 1.0F
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static float titleOpacityOld = 1.0F;
+    @Switch(
+        name = "Toggle Tab",
+        description = "Hold tab open without needing to hold down the tab key.",
+        category = "Miscellaneous", subcategory = "Tab"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean toggleTabOld;
+    @Switch(
+        name = "Crosshair Perspective",
+        description = "Remove the crosshair when in third person.",
+        category = "Miscellaneous", subcategory = "General"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean crosshairPerspectiveOld;
+    @Switch(
+        name = "Show Own Nametag",
+        description = "See your nametag in third person.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean showOwnNametagOld;
+    @Slider(
+        name = "Ridden Horse Opacity",
+        description = "Change the opacity of the horse you're currently riding for visibility.",
+        category = "Miscellaneous", subcategory = "Rendering",
+        min = 0F, max = 100
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static float riddenHorseOpacityOld = 1F;
+    @Switch(
+        name = "Number Ping",
+        description = "Show a readable ping number in tab instead of bars.",
+        category = "Miscellaneous", subcategory = "Tab"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean numberPingOld;
+    @Switch(
+        name = "Clean View",
+        description = "Stop rendering your potion effect particles.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean cleanViewOld;
+    @Switch(
+        name = "Disable Breaking Particles",
+        description = "Remove block-breaking particles for visibility.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean disableBlockBreakParticlesOld;
+    @Switch(
+        name = "Remove Inverted Colors from Crosshair",
+        description = "Remove the inverted color effect on the crosshair.",
+        category = "Miscellaneous", subcategory = "Overlays"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean removeInvertFromCrosshairOld;
+    @Switch(
+        name = "Add Text Shadow to Nametags",
+        description = "Render nametags with shadowed text.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean shadowedNametagTextOld;
+    @Switch(
+        name = "Add Text Shadow to Actionbar",
+        description = "Render actionbar messages with shadowed text.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean shadowedActionbarTextOld;
+    @Switch(
+        name = "Add Background to Actionbar",
+        description = "Render a background behind the actionbar.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean actionbarBackgroundOld;
+    @Switch(
+        name = "Remove Vertical Bobbing",
+        description = "While using View Bobbing, remove the vertical bobbing like in 1.14+.",
+        category = "Miscellaneous", subcategory = "General"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean removeVerticalViewBobbingOld;
+    @Switch(
+        name = "Static Particle Color",
+        description = "Disable particle lighting checks each frame.",
+        category = "Performance", subcategory = "Particles"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean staticParticleColorOld = false;
+
+    @Slider(
+        name = "Max Particle Limit",
+        description = "Stop additional particles from appearing when there are too many at once.",
+        category = "Performance", subcategory = "Particles",
+        min = 1, max = 10000
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static int maxParticleLimitOld = 4000;
+    @Switch(
+        name = "Disable Nametag Boxes",
+        description = "Remove the transparent box around the nametag.",
+        category = "Performance", subcategory = "Entity Rendering"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean disableNametagBoxesOld;
+    @Switch(
+        name = "Remove Container Background",
+        description = "Remove the dark background inside a container.",
+        category = "Screens", subcategory = "General"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean removeContainerBackgroundOld = false;
+    @Switch(
+        name = "GUI Crosshair",
+        description = "Stop rendering the crosshair when in a GUI.",
+        category = "Screens", subcategory = "General"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean guiCrosshairOld;
+
+    @Slider(
+        name = "Tab Opacity",
+        description = "Change the tab list opacity.",
+        category = "Screens", subcategory = "Tab",
+        min = 0F, max = 1.0F
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static float tabOpacityOld = 1.0F;
+
+    @Slider(
+        name = "Tab Player Count",
+        description = "Change how many players can display on tab.",
+        category = "Screens", subcategory = "Tab",
+        min = 10, max = 120
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static int tabPlayerCountOld = 80;
+    @Switch(
+        name = "Tab Height",
+        description = "Move the tab overlay down the selected amount of pixels when there's an active bossbar.",
+        category = "Screens", subcategory = "Tab"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean tabHeightAllowOld = true;
+
+    @Slider(
+        name = "Set Tab Height",
+        description = "Choose how many pixels tab will move down when there's an active bossbar.",
+        category = "Screens", subcategory = "Tab",
+        min = 0, max = 24
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static int tabHeightOld = 10;
+
+    @Exclude public static boolean nauseaEffect = false;
+    @Exclude public static float fireOverlayOpacity = 1F;
+    @Exclude public static boolean disableTitles = false;
+    @Exclude public static float titleScale = 1.0F;
+    @Exclude public static float titleOpacity = 1.0F;
+    @Exclude public static boolean toggleTab = false;
+    @Exclude public static boolean crosshairPerspective = false;
+    @Exclude public static boolean showOwnNametag = false;
+    @Exclude public static float riddenHorseOpacity = 1F;
+    @Exclude public static boolean numberPing = false;
+    @Exclude public static boolean cleanView = false;
+    @Exclude public static boolean disableBlockBreakParticles = false;
+    @Exclude public static boolean removeInvertFromCrosshair = false;
+    @Exclude public static boolean shadowedNametagText = false;
+    @Exclude public static boolean shadowedActionbarText = false;
+    @Exclude public static boolean actionbarBackground = false;
+    @Exclude public static boolean removeVerticalViewBobbing = false;
+    @Exclude public static boolean staticParticleColor = false;
+    @Exclude public static int maxParticleLimit = 4000;
+    @Exclude public static boolean disableNametagBoxes = false;
+    @Exclude public static boolean removeContainerBackground = false;
+    @Exclude public static boolean guiCrosshair = false;
+    @Exclude public static float tabOpacity = 1.0F;
+    @Exclude public static int tabPlayerCount = 80;
+    @Exclude public static boolean tabHeightAllow = false;
+    @Exclude public static int tabHeight = 0;
+
+
     public static boolean labyModMoment = true;
     public static String selectedAudioDevice = "";
-    public static int patcherVersion = 0;
 
     public static PatcherConfig INSTANCE = new PatcherConfig(); // Needs to be at the bottom or the default values take priority
 
@@ -1447,131 +1611,27 @@ public class PatcherConfig extends Config {
 
         boolean modified = false;
 
-        if (showOwnNametag) {
-            showOwnNametag = false;
-            modified = true;
-        }
-        if (shadowedNametagText) {
-            shadowedNametagText = false;
-            modified = true;
-        }
-        if (shadowedActionbarText) {
-            shadowedActionbarText = false;
-            modified = true;
-        }
-        if (disableTitles) {
-            disableTitles = false;
-            modified = true;
-        }
-        if (titleScale != 1) {
-            titleScale = 1;
-            modified = true;
-        }
-        if (titleOpacity != 1) {
-            titleOpacity = 1;
-            modified = true;
-        }
-        if (actionbarBackground) {
-            actionbarBackground = false;
-            modified = true;
-        }
-        if (removeContainerBackground) {
-            removeContainerBackground = false;
+        if (removeContainerBackgroundOld) {
             containerBackgroundOpacity = 0F;
             modified = true;
         }
-        if (disableNametagBoxes) {
-            disableNametagBoxes = false;
-            modified = true;
-        }
-
-        if (toggleTab) {
-            toggleTab = false;
-            modified = true;
-        }
-
-        if (numberPing) {
-            numberPing = false;
-            modified = true;
-        }
-
-        if (tabOpacity != 1.0F) {
-            tabOpacity = 1.0F;
-            modified = true;
-        }
-
-        if (tabPlayerCount != 80) {
-            tabPlayerCount = 80;
-            modified = true;
-        }
-
-        if (tabHeightAllow) {
-            tabHeightAllow = false;
-            modified = true;
-        }
-
-        if (tabHeight != 10) {
-            tabHeight = 10;
-            modified = true;
-        }
-
-        if (removeVerticalViewBobbing) {
-            removeVerticalViewBobbing = false;
-            modified = true;
-        }
-
-        if (cleanView) {
-            cleanView = false;
-            modified = true;
-        }
-
-        if (disableBlockBreakParticles) {
-            disableBlockBreakParticles = false;
-            modified = true;
-        }
-
-        if (staticParticleColor) {
-            staticParticleColor = false;
-            modified = true;
-        }
-
-        if (maxParticleLimit != 4000) {
-            maxParticleLimit = 4000;
-            modified = true;
-        }
-
-        if (crosshairPerspective) {
-            crosshairPerspective = false;
-            modified = true;
-        }
-
-        if (removeInvertFromCrosshair) {
-            removeInvertFromCrosshair = false;
-            modified = true;
-        }
-
-        if (guiCrosshair) {
-            guiCrosshair = false;
-            modified = true;
-        }
-
-        if (nauseaEffect) {
-            nauseaEffect = false;
+        if (nauseaEffectOld) {
             distortionEffect = 0;
             modified = true;
         }
 
-        if (patcherVersion == 0) {
-            patcherVersion = 1;
-            if (PatcherConfig.fireOverlayHeight < -0.5F || PatcherConfig.fireOverlayHeight > 1.5F) {
-                PatcherConfig.fireOverlayHeight = 0.0F;
-            }
-            fireOverlayOpacityI = (int) (fireOverlayOpacity * 100);
-            riddenHorseOpacityI = (int) (riddenHorseOpacity * 100);
+        if (fireOverlayOpacityOld != 1) {
+            fireOverlayOpacityI = (int) (fireOverlayOpacityOld * 100);
+            riddenHorseOpacityI = (int) (riddenHorseOpacityOld * 100);
             modified = true;
         }
 
         if (modified) {
+            try {
+                FileUtils.writeStringToFile(ConfigUtils.getProfileFile("patcher-not-migrated.json"), FileUtils.readFileToString(ConfigUtils.getProfileFile("patcher.json"), StandardCharsets.UTF_8), StandardCharsets.UTF_8);
+            } catch (IOException e) {
+                Patcher.instance.getLogger().error("Failed to copy over Patcher config before migration.", e);
+            }
             save();
         }
 
@@ -1579,6 +1639,33 @@ public class PatcherConfig extends Config {
         addListener("fullbright", reloadWorld);
         addListener("removeGroundFoliage", reloadWorld);
         addListener("vanillaGlassPanes", reloadWorld);
+
+        hideIf("showOwnNametag", () -> true);
+        hideIf("shadowedNametagText", () -> true);
+        hideIf("shadowedActionbarText", () -> true);
+        hideIf("disableTitles", () -> true);
+        hideIf("titleScale", () -> true);
+        hideIf("titleOpacity", () -> true);
+        hideIf("actionbarBackground", () -> true);
+        hideIf("removeContainerBackground", () -> true);
+        hideIf("disableNametagBoxes", () -> true);
+        hideIf("toggleTab", () -> true);
+        hideIf("numberPing", () -> true);
+        hideIf("tabOpacity", () -> true);
+        hideIf("tabPlayerCount", () -> true);
+        hideIf("tabHeightAllow", () -> true);
+        hideIf("tabHeight", () -> true);
+        hideIf("removeVerticalViewBobbing", () -> true);
+        hideIf("cleanView", () -> true);
+        hideIf("disableBlockBreakParticles", () -> true);
+        hideIf("staticParticleColor", () -> true);
+        hideIf("maxParticleLimit", () -> true);
+        hideIf("crosshairPerspective", () -> true);
+        hideIf("removeInvertFromCrosshair", () -> true);
+        hideIf("guiCrosshair", () -> true);
+        hideIf("nauseaEffect", () -> true);
+        hideIf("riddenHorseOpacity", () -> true);
+        hideIf("fireOverlayOpacity", () -> true);
 
         try {
             addDependency("smartFullbright", "fullbright");
