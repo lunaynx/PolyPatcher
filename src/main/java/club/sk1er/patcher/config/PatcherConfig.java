@@ -1748,4 +1748,13 @@ public class PatcherConfig extends Config {
             Patcher.instance.getLogger().error("Failed to access property.", e);
         }
     }
+
+    // compat with vigilance
+    public void markDirty() {
+
+    }
+
+    public void writeData() {
+        save();
+    }
 }
