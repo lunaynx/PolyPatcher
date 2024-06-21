@@ -1006,49 +1006,6 @@ public class PatcherConfig extends Config {
     )
     public static boolean removeChatMessageLimit = true;
 
-    @Info(
-        text = "Transparent Chat can positively impact performance.",
-        category = "Screens", subcategory = "Chat",
-        type = InfoType.INFO
-    )
-    private static boolean transparentChatInfo = true;
-
-    @Switch(
-        name = "Transparent Chat",
-        description = "Remove the background from chat.",
-        category = "Screens", subcategory = "Chat"
-    )
-    public static boolean transparentChat;
-
-    @Switch(
-        name = "Chat Background When Open",
-        description = "Add back the background when chat is open.",
-        category = "Screens", subcategory = "Chat"
-    )
-    public static boolean transparentChatOnlyWhenClosed;
-
-    @Info(
-        text = "Transparent Chat Input Field can positively impact performance.",
-        category = "Screens", subcategory = "Chat",
-        type = InfoType.INFO,
-        size = 2
-    )
-    private static boolean transparentChatInputFieldInfo = true;
-
-    @Switch(
-        name = "Transparent Chat Input Field",
-        description = "Remove the background from chat's input field.",
-        category = "Screens", subcategory = "Chat"
-    )
-    public static boolean transparentChatInputField;
-
-    @Switch(
-        name = "Extend Chat Background",
-        description = "Extend the chat background all the way to the left of the screen.",
-        category = "Screens", subcategory = "Chat"
-    )
-    public static boolean extendChatBackground = true;
-
     @Switch(
         name = "Compact Chat",
         description = "Clean up the chat by stacking duplicate messages.",
@@ -1134,13 +1091,6 @@ public class PatcherConfig extends Config {
         category = "Screens", subcategory = "Combat Utilities"
     )
     public static boolean projectileProtectionPercentage;
-
-    @Switch(
-        name = "Chat Position",
-        description = "Move the chat up 12 pixels to stop it from overlapping the health bar, as done in 1.12+.",
-        category = "Screens", subcategory = "Chat"
-    )
-    public static boolean chatPosition = true;
 
     @Switch(
         name = "Chat Timestamps",
@@ -1554,7 +1504,7 @@ public class PatcherConfig extends Config {
         category = "Screens", subcategory = "Tab"
     )
     // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
-    public static boolean tabHeightAllowOld = true;
+    public static boolean tabHeightAllowOld;
 
     @Slider(
         name = "Set Tab Height",
@@ -1572,6 +1522,45 @@ public class PatcherConfig extends Config {
     )
     // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
     public static boolean fixActionbarOverlapOld;
+
+    @Switch(
+        name = "Transparent Chat",
+        description = "Remove the background from chat.",
+        category = "Screens", subcategory = "Chat"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean transparentChatOld;
+
+    @Switch(
+        name = "Chat Background When Open",
+        description = "Add back the background when chat is open.",
+        category = "Screens", subcategory = "Chat"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean transparentChatOnlyWhenClosedOld;
+
+    @Switch(
+        name = "Transparent Chat Input Field",
+        description = "Remove the background from chat's input field.",
+        category = "Screens", subcategory = "Chat"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean transparentChatInputFieldOld;
+
+    @Switch(
+        name = "Extend Chat Background",
+        description = "Extend the chat background all the way to the left of the screen.",
+        category = "Screens", subcategory = "Chat"
+    )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
+    public static boolean extendChatBackgroundOld;
+
+    @Switch(
+        name = "Chat Position",
+        description = "Move the chat up 12 pixels to stop it from overlapping the health bar, as done in 1.12+.",
+        category = "Screens", subcategory = "Chat"
+    )
+    public static boolean chatPositionOld;
 
     @Exclude public static boolean nauseaEffect = false;
     @Exclude public static float fireOverlayOpacity = 1F;
@@ -1600,6 +1589,11 @@ public class PatcherConfig extends Config {
     @Exclude public static boolean tabHeightAllow = false;
     @Exclude public static int tabHeight = 0;
     @Exclude public static boolean fixActionbarOverlap = false;
+    @Exclude public static boolean transparentChat;
+    @Exclude public static boolean transparentChatOnlyWhenClosed;
+    @Exclude public static boolean transparentChatInputField;
+    @Exclude public static boolean extendChatBackground = false;
+    @Exclude public static boolean chatPosition = false;
 
 
     public static boolean labyModMoment = true;
@@ -1669,6 +1663,11 @@ public class PatcherConfig extends Config {
         hideIf("tabHeightAllowOld", () -> true);
         hideIf("tabHeightOld", () -> true);
         hideIf("fixActionbarOverlapOld", () -> true);
+        hideIf("transparentChatOld", () -> true);
+        hideIf("transparentChatOnlyWhenClosedOld", () -> true);
+        hideIf("transparentChatInputFieldOld", () -> true);
+        hideIf("extendChatBackgroundOld", () -> true);
+        hideIf("chatPositionOld", () -> true);
 
         OldPatcherConfig.nauseaEffect = nauseaEffectOld;
         OldPatcherConfig.fireOverlayOpacity = fireOverlayOpacityOld;
@@ -1697,6 +1696,11 @@ public class PatcherConfig extends Config {
         OldPatcherConfig.tabHeightAllow = tabHeightAllowOld;
         OldPatcherConfig.tabHeight = tabHeightOld;
         OldPatcherConfig.fixActionbarOverlap = fixActionbarOverlapOld;
+        OldPatcherConfig.transparentChat = transparentChatOld;
+        OldPatcherConfig.transparentChatOnlyWhenClosed = transparentChatOnlyWhenClosedOld;
+        OldPatcherConfig.transparentChatInputField = transparentChatInputFieldOld;
+        OldPatcherConfig.extendChatBackground = extendChatBackgroundOld;
+        OldPatcherConfig.chatPosition = chatPositionOld;
 
         try {
             addDependency("smartFullbright", "fullbright");

@@ -162,16 +162,16 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 # Screens
 - **1.11 Chat Length** - Extend the number of characters you can type from 100 to 256 on supported servers. (Supported servers are servers that support 1.11 or above. Some servers may kick you for this despite supporting 1.11 or above) *default
 - **Remove Chat Message Limit** *(not in original)* - Remove the limit on how many messages can show up in chat. *default
-- **Transparent Chat** - Remove the background from chat. (Can positively impact performance).
-- **Transparent Chat Input Field** - Remove the background from chat's input field. (Can positively impact performance).
-- **Extend Chat Background** - Extend the chat background all the way to the left of the screen. *default
+- ~~**Transparent Chat** - Remove the background from chat. (Can positively impact performance).~~ (replaced by [Chatting](https://modrinth.com/mod/chatting))
+- ~~**Transparent Chat Input Field** - Remove the background from chat's input field. (Can positively impact performance).~~ (replaced by [Chatting](https://modrinth.com/mod/chatting))
+- ~~**Extend Chat Background** - Extend the chat background all the way to the left of the screen. *default~~ (replaced by [Chatting](https://modrinth.com/mod/chatting))
 - **Compact Chat** - Clean up the chat by stacking duplicate messages (Does not work with Labymod) *default
 - **Consecutive Compact Chat** - Only compact messages if they're consecutive.
 - **Compact Chat Time** - Change the amount of time old messages take to stop being compacted. (Measured in seconds)
 - **Remove Blank Messages** - Stop messages with no content from showing up in chat.
 - **Shift Chat** - Keep chat open while sending a message if Shift is held while pressing Enter.
 - **Chat Delay** - Delay chat messages if they're sent within the selected timeframe after the previous message. (Measured in seconds)
-- **Chat Position** - Move the chat up 12 pixels to stop it from overlapping the health bar, as done in 1.12+. *default
+- ~~**Chat Position** - Move the chat up 12 pixels to stop it from overlapping the health bar, as done in 1.12+. *default~~ (replaced by [Chatting](https://modrinth.com/mod/chatting))
 - **Chat Timestamps** - Add timestamps before a message.
 - **Chat Timestamps Style** - Choose how Chat Timestamps should appear.
 - **Chat Timestamps Format** - Change the time format of Chat Timestamps.

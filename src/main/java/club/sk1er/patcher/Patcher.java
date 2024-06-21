@@ -347,11 +347,6 @@ public class Patcher {
                     notifications.send("Patcher", baseMessage + "Compact Chat is now disabled.");
                     PatcherConfig.compactChat = false;
                 }
-
-                if (PatcherConfig.chatPosition) {
-                    notifications.send("Patcher", baseMessage + "Chat Position is now disabled.");
-                    PatcherConfig.chatPosition = false;
-                }
             }
 
             if (PatcherConfig.optimizedFontRenderer && modId.equals("smoothfont")) {
