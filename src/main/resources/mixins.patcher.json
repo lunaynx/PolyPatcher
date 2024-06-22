@@ -2,6 +2,7 @@
   "package": "club.sk1er.patcher.mixins",
   "refmap": "mixins.patcher.refmap.json",
   "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.7",
   "plugin": "club.sk1er.patcher.mixins.plugin.PatcherMixinPlugin",
   "overwrites": {
     "conformVisibility": true
@@ -147,8 +148,6 @@
     "features.GuiMultiplayerMixin_FastServerJoin",
     "features.GuiNewChatMixin_ChatDelay",
     "features.GuiNewChatMixin_CompactChat",
-    "features.GuiNewChatMixin_ExtendChatBackground",
-    "features.GuiNewChatMixin_TransparentChat",
     "features.GuiScreenMixin_BackgroundRendering",
     "features.GuiScreenServerListMixin_FakeServerListDirectConnect",
     "features.InventoryPlayerTransformer_HotbarScrolling",

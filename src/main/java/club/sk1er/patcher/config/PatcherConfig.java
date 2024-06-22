@@ -962,7 +962,7 @@ public class PatcherConfig extends Config {
 
     @Slider(
         name = "Container Background Opacity (%)",
-        description = "Change the opacity of the dark background inside a container, or remove it completely.",
+        description = "Change the opacity of the dark background inside a container, or remove it completely. By default, this is 81.5%.",
         category = "Screens", subcategory = "General",
         min = 0F, max = 100F
     )
