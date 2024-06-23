@@ -222,6 +222,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
   <summary>Changes from original mod</summary>
 
 # Changes from original mod
+- Replace Essential with OneConfig
 - Boost performance by batch-drawing tile entities
 - Boost performance by reducing quad counts in item models
 - Fix Forge held item lighting to match vanilla
