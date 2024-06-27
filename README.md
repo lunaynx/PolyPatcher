@@ -45,7 +45,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - **Disable Hotbar Scrolling** - Remove the ability to scroll through your hotbar.
 - **Invert Hotbar Scrolling** *(not in original)* - Change the direction of scrolling in your hotbar.
 - **Prevent Overflow Hotbar Scrolling** *(not in original)* - Prevent from directly scrolling between the first and last hotbar slot.
-- ~~**Crosshair Perspective** - Remove the crosshair when in third person.~~ (replaced by [PolyCrosshair](https://modrinth.com/mod/polycrosshair))
+- ~~**Crosshair Perspective** - Remove the crosshair when in third person.~~ (replaced by [PolyCrosshair](https://modrinth.com/mod/crosshair))
 - **Unfocused Sounds** - Change the volume of sounds when you're not tabbed into the window.
 - **Unfocused FPS** - Toggle changing your FPS to whatever Unfocused FPS is set to when not tabbed into the window.**
 - **Unfocused FPS Amount** - Change the maximum FPS when you're not tabbed into the window, saving resources.
@@ -77,7 +77,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - **Hide Fire Overlay with Fire Resistance** - Hide the fire overlay when you have fire resistance active. The overlay will blink 5 seconds before your fire resistance is about to run out.
 - **Pumpkin Overlay Opacity** *(not in original)* - Change the opacity of the pumpkin overlay.
 - **Remove Water Overlay** - Remove the water texture overlay when underwater.
-- ~~**Remove Inverted Colors from Crosshair** - Remove the inverted color effect on the crosshair.~~ (replaced by [PolyCrosshair](https://modrinth.com/mod/polycrosshair))
+- ~~**Remove Inverted Colors from Crosshair** - Remove the inverted color effect on the crosshair.~~ (replaced by [PolyCrosshair](https://modrinth.com/mod/crosshair))
 - **Fullbright** - Remove lighting updates, increasing visibility. (Can positively impact performance. May conflict with minimaps) *default
 - **Smart Fullbright** - Automatically Disable the Fullbright Effect when using OptiFine Shaders. (Requires Fullbright) *default
 - **Disable Night Vision** *(not in original)* - Completely disables the effects of night vision.
@@ -184,7 +184,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - **Projectile Protection Percentage** - View how much total projectile protection you have inside your inventory.
 - **Container Background Opacity** *(not in original)* - Change the opacity of the dark background inside a container, or remove it completely.
 - **Container Opacity** - Change the opacity of supported containers. Includes Chests & Survival inventory.
-- ~~**GUI Crosshair** - Stop rendering the crosshair when in a GUI.~~ (replaced by [PolyCrosshair](https://modrinth.com/mod/polycrosshair))
+- ~~**GUI Crosshair** - Stop rendering the crosshair when in a GUI.~~ (replaced by [PolyCrosshair](https://modrinth.com/mod/crosshair))
 - **Startup Notification** - Notify how long the game took to start. *default
 - **Clean Main Menu** - Remove the Realms button on the main menu as it's useless on 1.8.9. *default
 - **Open to LAN Replacement** - Modify the Open to LAN button to either redirect to the server list or be removed.
