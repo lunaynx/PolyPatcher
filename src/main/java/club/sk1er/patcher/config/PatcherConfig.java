@@ -1553,40 +1553,181 @@ public class PatcherConfig extends Config {
         description = "Move the chat up 12 pixels to stop it from overlapping the health bar, as done in 1.12+.",
         category = "Screens", subcategory = "Chat"
     )
+    // HIDDEN OPTION!!!!!!! DO NOT REMOVE OR TOUCH
     public static boolean chatPositionOld;
 
     @Exclude public static boolean nauseaEffect = false;
     @Exclude public static float fireOverlayOpacity = 1F;
-    @Exclude public static boolean disableTitles = false;
-    @Exclude public static float titleScale = 1.0F;
-    @Exclude public static float titleOpacity = 1.0F;
-    @Exclude public static boolean toggleTab = false;
-    @Exclude public static boolean crosshairPerspective = false;
-    @Exclude public static boolean showOwnNametag = false;
+    @Switch(
+        name = "Disable Titles",
+        description = "Stop titles from appearing.",
+        category = "Deprecated", subcategory = "Titles"
+    )
+    public static boolean disableTitles = false;
+    @Slider(
+        name = "Title Scale",
+        description = "Set the scale for titles.",
+        category = "Deprecated", subcategory = "Titles",
+        min = 0F, max = 1F
+    )
+    public static float titleScale = 1.0F;
+    @Slider(
+        name = "Title Opacity",
+        description = "Change the opacity of titles.",
+        category = "Deprecated", subcategory = "Titles",
+        min = 0F, max = 1.0F
+    )
+    public static float titleOpacity = 1.0F;
+    @Switch(
+        name = "Toggle Tab",
+        description = "Hold tab open without needing to hold down the tab key.",
+        category = "Deprecated", subcategory = "Tab"
+    )
+    public static boolean toggleTab = false;
+    @Switch(
+        name = "Crosshair Perspective",
+        description = "Remove the crosshair when in third person.",
+        category = "Deprecated", subcategory = "Crosshair"
+    )
+    public static boolean crosshairPerspective = false;
+    @Switch(
+        name = "Remove Inverted Colors from Crosshair",
+        description = "Remove the inverted color effect on the crosshair.",
+        category = "Deprecated", subcategory = "Crosshair"
+    )
+    public static boolean removeInvertFromCrosshair = false;
+    @Switch(
+        name = "Show Own Nametag",
+        description = "See your nametag in third person.",
+        category = "Deprecated", subcategory = "Nametags"
+    )
+    public static boolean showOwnNametag = false;
+    @Switch(
+        name = "Add Text Shadow to Nametags",
+        description = "Render nametags with shadowed text.",
+        category = "Deprecated", subcategory = "Nametags"
+    )
+    public static boolean shadowedNametagText = false;
     @Exclude public static float riddenHorseOpacity = 1F;
-    @Exclude public static boolean numberPing = false;
-    @Exclude public static boolean cleanView = false;
-    @Exclude public static boolean disableBlockBreakParticles = false;
-    @Exclude public static boolean removeInvertFromCrosshair = false;
-    @Exclude public static boolean shadowedNametagText = false;
-    @Exclude public static boolean shadowedActionbarText = false;
-    @Exclude public static boolean actionbarBackground = false;
-    @Exclude public static boolean removeVerticalViewBobbing = false;
-    @Exclude public static boolean staticParticleColor = false;
-    @Exclude public static int maxParticleLimit = 4000;
-    @Exclude public static boolean disableNametagBoxes = false;
+    @Switch(
+        name = "Clean View",
+        description = "Stop rendering your potion effect particles.",
+        category = "Deprecated", subcategory = "Particles"
+    )
+    public static boolean cleanView = false;
+    @Switch(
+        name = "Disable Breaking Particles",
+        description = "Remove block-breaking particles for visibility.",
+        category = "Deprecated", subcategory = "Particles"
+    )
+    public static boolean disableBlockBreakParticles = false;
+    @Switch(
+        name = "Add Text Shadow to Actionbar",
+        description = "Render actionbar messages with shadowed text.",
+        category = "Deprecated", subcategory = "Actionbar"
+    )
+    public static boolean shadowedActionbarText = false;
+    @Switch(
+        name = "Add Background to Actionbar",
+        description = "Render a background behind the actionbar.",
+        category = "Deprecated", subcategory = "Actionbar"
+    )
+    public static boolean actionbarBackground = false;
+    @Switch(
+        name = "Remove Vertical Bobbing",
+        description = "While using View Bobbing, remove the vertical bobbing like in 1.14+.",
+        category = "Deprecated", subcategory = "Animations"
+    )
+    public static boolean removeVerticalViewBobbing = false;
+    @Switch(
+        name = "Static Particle Color",
+        description = "Disable particle lighting checks each frame.",
+        category = "Deprecated", subcategory = "Particles"
+    )
+    public static boolean staticParticleColor = false;
+    @Slider(
+        name = "Max Particle Limit",
+        description = "Stop additional particles from appearing when there are too many at once.",
+        category = "Deprecated", subcategory = "Particles",
+        min = 1, max = 10000
+    )
+    public static int maxParticleLimit = 4000;
+    @Switch(
+        name = "Disable Nametag Boxes",
+        description = "Remove the transparent box around the nametag.",
+        category = "Deprecated", subcategory = "Nametags"
+    )
+    public static boolean disableNametagBoxes = false;
     @Exclude public static boolean removeContainerBackground = false;
-    @Exclude public static boolean guiCrosshair = false;
-    @Exclude public static float tabOpacity = 1.0F;
-    @Exclude public static int tabPlayerCount = 80;
-    @Exclude public static boolean tabHeightAllow = false;
-    @Exclude public static int tabHeight = 0;
-    @Exclude public static boolean fixActionbarOverlap = false;
-    @Exclude public static boolean transparentChat;
-    @Exclude public static boolean transparentChatOnlyWhenClosed;
-    @Exclude public static boolean transparentChatInputField;
-    @Exclude public static boolean extendChatBackground = false;
-    @Exclude public static boolean chatPosition = false;
+    @Switch(
+        name = "GUI Crosshair",
+        description = "Stop rendering the crosshair when in a GUI.",
+        category = "Deprecated", subcategory = "Crosshair"
+    )
+    public static boolean guiCrosshair = false;
+    @Slider(
+        name = "Tab Opacity",
+        description = "Change the tab list opacity.",
+        category = "Deprecated", subcategory = "Tab",
+        min = 0F, max = 1.0F
+    )
+    public static float tabOpacity = 1.0F;
+    @Slider(
+        name = "Tab Player Count",
+        description = "Change how many players can display on tab.",
+        category = "Deprecated", subcategory = "Tab",
+        min = 10, max = 120
+    )
+    public static int tabPlayerCount = 80;
+    @Switch(
+        name = "Tab Height",
+        description = "Move the tab overlay down the selected amount of pixels when there's an active bossbar.",
+        category = "Deprecated", subcategory = "Tab"
+    )
+    public static boolean tabHeightAllow = false;
+    @Slider(
+        name = "Set Tab Height",
+        description = "Choose how many pixels tab will move down when there's an active bossbar.",
+        category = "Deprecated", subcategory = "Tab",
+        min = 0, max = 24
+    )
+    public static int tabHeight = 0;
+    @Switch(
+        name = "Fix Actionbar Overlap",
+        description = "Prevents the actionbar text from rendering above the armor/health bar.",
+        category = "Deprecated", subcategory = "Actionbar"
+    )
+    public static boolean fixActionbarOverlap = false;
+    @Switch(
+        name = "Transparent Chat",
+        description = "Remove the background from chat.",
+        category = "Deprecated", subcategory = "Chat"
+    )
+    public static boolean transparentChat;
+    @Switch(
+        name = "Chat Background When Open",
+        description = "Add back the background when chat is open.",
+        category = "Deprecated", subcategory = "Chat"
+    )
+    public static boolean transparentChatOnlyWhenClosed;
+    @Switch(
+        name = "Transparent Chat Input Field",
+        description = "Remove the background from chat's input field.",
+        category = "Deprecated", subcategory = "Chat"
+    )
+    public static boolean transparentChatInputField;
+    @Switch(
+        name = "Extend Chat Background",
+        description = "Extend the chat background all the way to the left of the screen.",
+        category = "Deprecated", subcategory = "Chat"
+    )
+    public static boolean extendChatBackground = false;
+    @Switch(
+        name = "Chat Position",
+        description = "Move the chat up 12 pixels to stop it from overlapping the health bar, as done in 1.12+.",
+        category = "Deprecated", subcategory = "Chat"
+    )
+    public static boolean chatPosition = false;
 
 
     public static boolean labyModMoment = true;
@@ -1695,6 +1836,35 @@ public class PatcherConfig extends Config {
         OldPatcherConfig.extendChatBackground = extendChatBackgroundOld;
         OldPatcherConfig.chatPosition = chatPositionOld;
 
+        addDependency("disableTitles", "Replaced by VanillaHUD", () -> false);
+        addDependency("titleScale", "Replaced by VanillaHUD", () -> false);
+        addDependency("titleOpacity", "Replaced by VanillaHUD", () -> false);
+        addDependency("toggleTab", "Replaced by VanillaHUD", () -> false);
+        addDependency("crosshairPerspective", "Replaced by PolyCrosshair", () -> false);
+        addDependency("showOwnNametag", "Replaced by PolyNametag", () -> false);
+        addDependency("numberPing", "Replaced by VanillaHUD", () -> false);
+        addDependency("cleanView", "Replaced by OverflowParticles", () -> false);
+        addDependency("disableBlockBreakParticles", "Replaced by OverflowParticles", () -> false);
+        addDependency("removeInvertFromCrosshair", "Replaced by PolyCrosshair", () -> false);
+        addDependency("shadowedNametagText", "Replaced by PolyNametag", () -> false);
+        addDependency("shadowedActionbarText", "Replaced by VanillaHUD", () -> false);
+        addDependency("actionbarBackground", "Replaced by VanillaHUD", () -> false);
+        addDependency("removeVerticalViewBobbing", "Replaced by OverflowAnimations", () -> false);
+        addDependency("staticParticleColor", "Replaced by OverflowParticles", () -> false);
+        addDependency("maxParticleLimit", "Replaced by OverflowParticles", () -> false);
+        addDependency("disableNametagBoxes", "Replaced by PolyNametag", () -> false);
+        addDependency("guiCrosshair", "Replaced by PolyCrosshair", () -> false);
+        addDependency("tabOpacity", "Replaced by VanillaHUD", () -> false);
+        addDependency("tabPlayerCount", "Replaced by VanillaHUD", () -> false);
+        addDependency("tabHeightAllow", "Replaced by VanillaHUD", () -> false);
+        addDependency("tabHeight", "Replaced by VanillaHUD", () -> false);
+        addDependency("fixActionbarOverlap", "Replaced by VanillaHUD", () -> false);
+        addDependency("transparentChat", "Replaced by Chatting", () -> false);
+        addDependency("transparentChatOnlyWhenClosed", "Replaced by Chatting", () -> false);
+        addDependency("transparentChatInputField", "Replaced by Chatting", () -> false);
+        addDependency("extendChatBackground", "Replaced by Chatting", () -> false);
+        addDependency("chatPosition", "Replaced by Chatting", () -> false);
+
         try {
             addDependency("smartFullbright", "fullbright");
             addDependency("cleanerNightVision", "disableNightVision", () -> !disableNightVision);
@@ -1706,7 +1876,6 @@ public class PatcherConfig extends Config {
             addDependency("timestampsStyle", "timestamps");
             addDependency("secondsOnTimestamps", "timestamps");
             addDependency("imagePreviewWidth", "imagePreview");
-            addDependency("transparentChatOnlyWhenClosed", "transparentChat");
 
             Arrays.asList(
                 "slownessFovModifierFloat", "speedFovModifierFloat",
