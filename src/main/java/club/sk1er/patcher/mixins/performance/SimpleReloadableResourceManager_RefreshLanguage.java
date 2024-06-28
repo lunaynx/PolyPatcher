@@ -36,4 +36,11 @@ public class SimpleReloadableResourceManager_RefreshLanguage {
             return reloadListeners;
         }
     }
+
+    @Inject(method = "notifyReloadListeners", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/common/ProgressManager;pop(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V"))
+    private void callOptiFineLanguage(CallbackInfo ci) {
+        if (LanguageHook.shouldLoadLanguage()) {
+            LanguageHook.reloadOptiFineLanguage();
+        }
+    }
 }
