@@ -1288,6 +1288,12 @@ public class PatcherConfig extends Config {
     )
     public static boolean cacheEntrypoints = true;*/
 
+    @Switch(
+        name = "Improved Head Rendering",
+        category = "Experimental", subcategory = "Head Rendering"
+    )
+    public static boolean improvedHeadRendering = true;
+
     @Info(
         text = "This may cause stuff with animations to feel \"choppy\".",
         category = "Experimental", subcategory = "HUD Caching",
