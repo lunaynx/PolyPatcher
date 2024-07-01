@@ -1280,7 +1280,7 @@ public class PatcherConfig extends Config {
 
     // EXPERIMENTAL
 
-    /*Switchty(
+    /*Switch(
         name = "Cache Entrypoints",
         description = "Cache Forge mod entry points, improving startup time as Forge no longer needs to walk through " +
             "every class to find the @Mod annotation.",
@@ -1288,8 +1288,16 @@ public class PatcherConfig extends Config {
     )
     public static boolean cacheEntrypoints = true;*/
 
+    @Info(
+        text = "Improved Head Rendering requires a restart once toggled.",
+        category = "Experimental", subcategory = "Head Rendering",
+        type = InfoType.WARNING
+    )
+    private static boolean improvedHeadRenderingInfo;
+
     @Switch(
         name = "Improved Head Rendering",
+        description = "Remove transparent pixels on heads instead of turning them black.",
         category = "Experimental", subcategory = "Head Rendering"
     )
     public static boolean improvedHeadRendering = true;

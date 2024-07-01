@@ -12,8 +12,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-@Mixin(ImageBufferDownload.class)
-public class ImageBufferDownloadMixin_ImprovedHeadRendering {
+@Mixin(value = ImageBufferDownload.class)
+public abstract class ImageBufferDownloadMixin_ImprovedHeadRendering {
     @Shadow
     private int[] imageData;
     @Shadow
@@ -21,35 +21,39 @@ public class ImageBufferDownloadMixin_ImprovedHeadRendering {
     @Shadow
     private int imageHeight;
     @Shadow
-    private void setAreaOpaque(int x, int y, int width, int height) { }
+    protected abstract void setAreaOpaque(int x, int y, int width, int height);
     @Shadow
-    private void setAreaTransparent(int x, int y, int width, int height) { }
+    protected abstract void setAreaTransparent(int x, int y, int width, int height);
 
-    @Inject(method = "parseUserSkin", at = @At(value = "INVOKE", target = "Ljava/awt/image/BufferedImage;getGraphics()Ljava/awt/Graphics;", shift = At.Shift.BEFORE), cancellable = true)
-    private void patcher$removeBlackPixels(BufferedImage image, CallbackInfoReturnable<BufferedImage> cir) {
-        System.out.println("PATCHER MIXIN INTO HEAD DOWNLOADING");
+    @Inject(method = "parseUserSkin", at = @At("HEAD"), cancellable = true)
+    private void removeTransparentPixels(BufferedImage image, CallbackInfoReturnable<BufferedImage> cir) {
+        if (image == null) {
+            cir.setReturnValue(null);
+            return;
+        }
+
         if (PatcherConfig.improvedHeadRendering) {
             this.imageWidth = 64;
             this.imageHeight = 64;
-            BufferedImage bufferedimage = new BufferedImage(this.imageWidth, this.imageHeight, 2);
-            Graphics graphics = bufferedimage.getGraphics();
+            BufferedImage bufferedImage = new BufferedImage(this.imageWidth, this.imageHeight, 2);
+            Graphics graphics = bufferedImage.getGraphics();
             graphics.drawImage(image, 0, 0, null);
 
             if (image.getHeight() == 32) {
-                graphics.drawImage(bufferedimage, 24, 48, 20, 52, 4, 16, 8, 20, null);
-                graphics.drawImage(bufferedimage, 28, 48, 24, 52, 8, 16, 12, 20, null);
-                graphics.drawImage(bufferedimage, 20, 52, 16, 64, 8, 20, 12, 32, null);
-                graphics.drawImage(bufferedimage, 24, 52, 20, 64, 4, 20, 8, 32, null);
-                graphics.drawImage(bufferedimage, 28, 52, 24, 64, 0, 20, 4, 32, null);
-                graphics.drawImage(bufferedimage, 32, 52, 28, 64, 12, 20, 16, 32, null);
-                graphics.drawImage(bufferedimage, 40, 48, 36, 52, 44, 16, 48, 20, null);
-                graphics.drawImage(bufferedimage, 44, 48, 40, 52, 48, 16, 52, 20, null);
-                graphics.drawImage(bufferedimage, 36, 52, 32, 64, 48, 20, 52, 32, null);
-                graphics.drawImage(bufferedimage, 40, 52, 36, 64, 44, 20, 48, 32, null);
-                graphics.drawImage(bufferedimage, 44, 52, 40, 64, 40, 20, 44, 32, null);
-                graphics.drawImage(bufferedimage, 48, 52, 44, 64, 52, 20, 56, 32, null);
+                graphics.drawImage(bufferedImage, 24, 48, 20, 52, 4, 16, 8, 20, null);
+                graphics.drawImage(bufferedImage, 28, 48, 24, 52, 8, 16, 12, 20, null);
+                graphics.drawImage(bufferedImage, 20, 52, 16, 64, 8, 20, 12, 32, null);
+                graphics.drawImage(bufferedImage, 24, 52, 20, 64, 4, 20, 8, 32, null);
+                graphics.drawImage(bufferedImage, 28, 52, 24, 64, 0, 20, 4, 32, null);
+                graphics.drawImage(bufferedImage, 32, 52, 28, 64, 12, 20, 16, 32, null);
+                graphics.drawImage(bufferedImage, 40, 48, 36, 52, 44, 16, 48, 20, null);
+                graphics.drawImage(bufferedImage, 44, 48, 40, 52, 48, 16, 52, 20, null);
+                graphics.drawImage(bufferedImage, 36, 52, 32, 64, 48, 20, 52, 32, null);
+                graphics.drawImage(bufferedImage, 40, 52, 36, 64, 44, 20, 48, 32, null);
+                graphics.drawImage(bufferedImage, 44, 52, 40, 64, 40, 20, 44, 32, null);
+                graphics.drawImage(bufferedImage, 48, 52, 44, 64, 52, 20, 56, 32, null);
                 graphics.dispose();
-                this.imageData = ((DataBufferInt) bufferedimage.getRaster().getDataBuffer()).getData();
+                this.imageData = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData();
                 this.setAreaOpaque(0, 0, 32, 16);
                 this.setAreaTransparent(32, 0, 64, 32);
                 this.setAreaOpaque(0, 16, 64, 32);
@@ -59,9 +63,10 @@ public class ImageBufferDownloadMixin_ImprovedHeadRendering {
                 this.setAreaTransparent(0, 48, 16, 64);
                 this.setAreaOpaque(16, 48, 48, 64);
                 this.setAreaTransparent(48, 48, 64, 64);
-                cir.setReturnValue(bufferedimage);
+                cir.setReturnValue(bufferedImage);
+            } else {
+                cir.setReturnValue(image);
             }
-            cir.setReturnValue(image);
         }
     }
 
