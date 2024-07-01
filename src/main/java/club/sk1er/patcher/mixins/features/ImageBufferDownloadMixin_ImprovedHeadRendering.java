@@ -12,6 +12,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+/**
+ * This mixin is based off of SkyBlockcatia's, which is licensed under the MIT license
+ * <a href="https://github.com/SteveKunG/SkyBlockcatia/blob/1.8.9/LICENSE.md">sbc's license</a>
+ */
 @Mixin(value = ImageBufferDownload.class)
 public abstract class ImageBufferDownloadMixin_ImprovedHeadRendering {
     @Shadow
