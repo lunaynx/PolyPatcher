@@ -1,9 +1,10 @@
 package club.sk1er.patcher.mixins.performance;
 
-import club.sk1er.patcher.hooks.LanguageHook;
+import club.sk1er.patcher.hooks.ResourceReloadHooks;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.client.resources.SimpleReloadableResourceManager;
+import net.minecraft.client.resources.model.ModelManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(SimpleReloadableResourceManager.class)
-public class SimpleReloadableResourceManager_RefreshLanguage {
+public class SimpleReloadableResourceManager_OnlyRefreshNecessaryListeners {
 
     @Shadow
     @Final
@@ -24,14 +25,18 @@ public class SimpleReloadableResourceManager_RefreshLanguage {
     @Inject(method = "registerReloadListener", at = @At("HEAD"))
     private void onReloadListenerRegister(IResourceManagerReloadListener reloadListener, CallbackInfo ci) {
         if (reloadListener instanceof LanguageManager) {
-            LanguageHook.setLanguageManager(reloadListener);
+            ResourceReloadHooks.setLanguageManager(reloadListener);
+        } else if (reloadListener instanceof ModelManager) {
+            ResourceReloadHooks.setModelManager(reloadListener);
         }
     }
 
     @Redirect(method = "notifyReloadListeners", at = @At(value = "FIELD", target = "Lnet/minecraft/client/resources/SimpleReloadableResourceManager;reloadListeners:Ljava/util/List;"))
     private List<IResourceManagerReloadListener> redirectNotifyReloadListeners(SimpleReloadableResourceManager simpleReloadableResourceManager) {
-        if (LanguageHook.shouldLoadLanguage()) {
-            return LanguageHook.getLanguageManager();
+        if (ResourceReloadHooks.shouldLoadLanguage()) {
+            return ResourceReloadHooks.getLanguageManager();
+        } else if (ResourceReloadHooks.shouldLoadMipmaps()) {
+            return ResourceReloadHooks.getModelManager();
         } else {
             return reloadListeners;
         }
@@ -39,8 +44,8 @@ public class SimpleReloadableResourceManager_RefreshLanguage {
 
     @Inject(method = "notifyReloadListeners", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/common/ProgressManager;pop(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V"))
     private void callOptiFineLanguage(CallbackInfo ci) {
-        if (LanguageHook.shouldLoadLanguage()) {
-            LanguageHook.reloadOptiFineLanguage();
+        if (ResourceReloadHooks.shouldLoadLanguage()) {
+            ResourceReloadHooks.reloadOptiFineLanguage();
         }
     }
 }
