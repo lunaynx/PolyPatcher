@@ -1,6 +1,6 @@
 package club.sk1er.patcher.mixins.performance;
 
-import club.sk1er.patcher.hooks.LanguageHook;
+import club.sk1er.patcher.hooks.ResourceReloadHooks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,7 +17,7 @@ public class GuiLanguageMixin_RefreshLanguage {
         )
     )
     private void onResourceLoad(int par1, boolean par2, int par3, int par4, CallbackInfo ci) {
-        LanguageHook.setLoadLanguage(true);
+        ResourceReloadHooks.setLoadLanguage(true);
     }
 
     @Inject(
@@ -29,6 +29,6 @@ public class GuiLanguageMixin_RefreshLanguage {
         )
     )
     private void onGameOptionWrite(int par1, boolean par2, int par3, int par4, CallbackInfo ci) {
-        LanguageHook.setLoadLanguage(false);
+        ResourceReloadHooks.setLoadLanguage(false);
     }
 }

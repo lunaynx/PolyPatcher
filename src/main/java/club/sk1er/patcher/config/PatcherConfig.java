@@ -520,6 +520,13 @@ public class PatcherConfig extends Config {
     public static boolean futureHitBoxes = true;
 
     @Switch(
+        name = "Exclude Cacti from 1.12 Boxes",
+        description = "Exclude cacti from the 1.12 selection box changes, as it would actually shrink rather than increase in size.",
+        category = "Miscellaneous", subcategory = "Blocks"
+    )
+    public static boolean cactusHitboxExclusion = true;
+
+    @Switch(
         name = "Alternate Text Shadow",
         description = "Change the text-shadow to only move down rather than move to the side.",
         category = "Miscellaneous", subcategory = "Rendering"
@@ -1850,36 +1857,37 @@ public class PatcherConfig extends Config {
         OldPatcherConfig.extendChatBackground = extendChatBackgroundOld;
         OldPatcherConfig.chatPosition = chatPositionOld;
 
-        addDependency("disableTitles", "Replaced by VanillaHUD", () -> false);
-        addDependency("titleScale", "Replaced by VanillaHUD", () -> false);
-        addDependency("titleOpacity", "Replaced by VanillaHUD", () -> false);
-        addDependency("toggleTab", "Replaced by VanillaHUD", () -> false);
-        addDependency("crosshairPerspective", "Replaced by PolyCrosshair", () -> false);
-        addDependency("showOwnNametag", "Replaced by PolyNametag", () -> false);
-        addDependency("numberPing", "Replaced by VanillaHUD", () -> false);
-        addDependency("cleanView", "Replaced by OverflowParticles", () -> false);
-        addDependency("disableBlockBreakParticles", "Replaced by OverflowParticles", () -> false);
-        addDependency("removeInvertFromCrosshair", "Replaced by PolyCrosshair", () -> false);
-        addDependency("shadowedNametagText", "Replaced by PolyNametag", () -> false);
-        addDependency("shadowedActionbarText", "Replaced by VanillaHUD", () -> false);
-        addDependency("actionbarBackground", "Replaced by VanillaHUD", () -> false);
-        addDependency("removeVerticalViewBobbing", "Replaced by OverflowAnimations", () -> false);
-        addDependency("staticParticleColor", "Replaced by OverflowParticles", () -> false);
-        addDependency("maxParticleLimit", "Replaced by OverflowParticles", () -> false);
-        addDependency("disableNametagBoxes", "Replaced by PolyNametag", () -> false);
-        addDependency("guiCrosshair", "Replaced by PolyCrosshair", () -> false);
-        addDependency("tabOpacity", "Replaced by VanillaHUD", () -> false);
-        addDependency("tabPlayerCount", "Replaced by VanillaHUD", () -> false);
-        addDependency("tabHeightAllow", "Replaced by VanillaHUD", () -> false);
-        addDependency("tabHeight", "Replaced by VanillaHUD", () -> false);
-        addDependency("fixActionbarOverlap", "Replaced by VanillaHUD", () -> false);
-        addDependency("transparentChat", "Replaced by Chatting", () -> false);
-        addDependency("transparentChatOnlyWhenClosed", "Replaced by Chatting", () -> false);
-        addDependency("transparentChatInputField", "Replaced by Chatting", () -> false);
-        addDependency("extendChatBackground", "Replaced by Chatting", () -> false);
-        addDependency("chatPosition", "Replaced by Chatting", () -> false);
+        addDependency("disableTitles", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("titleScale", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("titleOpacity", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("toggleTab", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("crosshairPerspective", "Replaced by PolyCrosshair. Please install PolyCrosshair to use this feature.", () -> false);
+        addDependency("showOwnNametag", "Replaced by PolyNametag. Please install PolyNametag to use this feature.", () -> false);
+        addDependency("numberPing", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("cleanView", "Replaced by OverflowParticles. Please install OverflowParticles to use this feature.", () -> false);
+        addDependency("disableBlockBreakParticles", "Replaced by OverflowParticles. Please install OverflowParticles to use this feature.", () -> false);
+        addDependency("removeInvertFromCrosshair", "Replaced by PolyCrosshair. Please install PolyCrosshair to use this feature.", () -> false);
+        addDependency("shadowedNametagText", "Replaced by PolyNametag. Please install PolyNametag to use this feature.", () -> false);
+        addDependency("shadowedActionbarText", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("actionbarBackground", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("removeVerticalViewBobbing", "Replaced by OverflowAnimations. Please install OverflowAnimations to use this feature.", () -> false);
+        addDependency("staticParticleColor", "Replaced by OverflowParticles. Please install OverflowParticles to use this feature.", () -> false);
+        addDependency("maxParticleLimit", "Replaced by OverflowParticles. Please install OverflowParticles to use this feature.", () -> false);
+        addDependency("disableNametagBoxes", "Replaced by PolyNametag. Please install PolyNametag to use this feature.", () -> false);
+        addDependency("guiCrosshair", "Replaced by PolyCrosshair. Please install PolyCrosshair to use this feature.", () -> false);
+        addDependency("tabOpacity", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("tabPlayerCount", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("tabHeightAllow", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("tabHeight", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("fixActionbarOverlap", "Replaced by VanillaHUD. Please install VanillaHUD to use this feature.", () -> false);
+        addDependency("transparentChat", "Replaced by Chatting. Please install Chatting to use this feature.", () -> false);
+        addDependency("transparentChatOnlyWhenClosed", "Replaced by Chatting. Please install Chatting to use this feature.", () -> false);
+        addDependency("transparentChatInputField", "Replaced by Chatting. Please install Chatting to use this feature.", () -> false);
+        addDependency("extendChatBackground", "Replaced by Chatting. Please install Chatting to use this feature.", () -> false);
+        addDependency("chatPosition", "Replaced by Chatting. Please install Chatting to use this feature.", () -> false);
 
         try {
+            addDependency("cactusHitboxExclusion", "futureHitBoxes");
             addDependency("smartFullbright", "fullbright");
             addDependency("cleanerNightVision", "disableNightVision", () -> !disableNightVision);
             addDependency("unfocusedFPSAmount", "unfocusedFPS");
@@ -1940,7 +1948,7 @@ public class PatcherConfig extends Config {
             //noinspection ConstantConditions
             Supplier<Boolean> minecraft112 = () -> ForgeVersion.mcVersion.equals("1.12.2");
             Arrays.asList(
-                "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "farmSelectionBoxesInfo",
+                "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "cactusHitboxExclusion", "farmSelectionBoxesInfo",
                 "leftHandInFirstPerson", "extendedChatLength", "chatPosition",
                 "parallaxFix", "extendChatBackground", "vanillaGlassPanes"
             ).forEach(property -> hideIf(property, minecraft112));
