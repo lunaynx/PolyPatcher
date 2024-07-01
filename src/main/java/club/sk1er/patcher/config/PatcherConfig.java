@@ -520,6 +520,13 @@ public class PatcherConfig extends Config {
     public static boolean futureHitBoxes = true;
 
     @Switch(
+        name = "Exclude Cacti from 1.12 Boxes",
+        description = "Exclude cacti from the 1.12 selection box changes, as it would actually shrink rather than increase in size.",
+        category = "Miscellaneous", subcategory = "Blocks"
+    )
+    public static boolean cactusHitboxExclusion = true;
+
+    @Switch(
         name = "Alternate Text Shadow",
         description = "Change the text-shadow to only move down rather than move to the side.",
         category = "Miscellaneous", subcategory = "Rendering"
@@ -1866,6 +1873,7 @@ public class PatcherConfig extends Config {
         addDependency("chatPosition", "Replaced by Chatting. Please install Chatting to use this feature.", () -> false);
 
         try {
+            addDependency("cactusHitboxExclusion", "futureHitBoxes");
             addDependency("smartFullbright", "fullbright");
             addDependency("cleanerNightVision", "disableNightVision", () -> !disableNightVision);
             addDependency("unfocusedFPSAmount", "unfocusedFPS");
@@ -1926,7 +1934,7 @@ public class PatcherConfig extends Config {
             //noinspection ConstantConditions
             Supplier<Boolean> minecraft112 = () -> ForgeVersion.mcVersion.equals("1.12.2");
             Arrays.asList(
-                "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "farmSelectionBoxesInfo",
+                "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "cactusHitboxExclusion", "farmSelectionBoxesInfo",
                 "leftHandInFirstPerson", "extendedChatLength", "chatPosition",
                 "parallaxFix", "extendChatBackground", "vanillaGlassPanes"
             ).forEach(property -> hideIf(property, minecraft112));
