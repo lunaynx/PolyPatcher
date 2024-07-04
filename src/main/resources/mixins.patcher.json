@@ -150,6 +150,7 @@
     "features.GuiNewChatMixin_CompactChat",
     "features.GuiScreenMixin_BackgroundRendering",
     "features.GuiScreenServerListMixin_FakeServerListDirectConnect",
+    "features.ImageBufferDownload_EarsMod",
     "features.ImageBufferDownloadMixin_ImprovedHeadRendering",
     "features.InventoryPlayerTransformer_HotbarScrolling",
     "features.LayerArrowMixin_CancelRender",
