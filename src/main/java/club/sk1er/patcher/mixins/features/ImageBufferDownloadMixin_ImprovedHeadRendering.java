@@ -75,7 +75,11 @@ public abstract class ImageBufferDownloadMixin_ImprovedHeadRendering {
     }
 
     @Inject(method = "parseUserSkin", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void callPreprocess(BufferedImage image, CallbackInfoReturnable<BufferedImage> cir, BufferedImage bufferedImage, Graphics var3) {
+    private void patcher$callPreprocess(BufferedImage image, CallbackInfoReturnable<BufferedImage> cir, BufferedImage bufferedImage
+        //#if MC<=10809
+        , Graphics var3
+        //#endif
+    ) {
         if (!PatcherConfig.improvedSkinRendering) {
             EarsModHook.preprocessSkin((ImageBufferDownload) (Object) this, image, bufferedImage);
         }
