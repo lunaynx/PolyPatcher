@@ -251,7 +251,6 @@
     "performance.forge.FMLClientHandlerMixin_Optimization",
     "performance.forge.FMLControlledNamespacedRegistryMixin_TrimAvailabilityMap",
     "performance.forge.ItemLayerModelMixin_ReduceQuadCount",
-    "performance.forge.JarDiscovererMixin_EntrypointCaching",
     "performance.forge.JarDiscovererMixin_ReplaceRegex",
     "performance.forge.ModDiscovererMixin_ReplaceRegex",
     "performance.hudcaching.EntityRendererMixin_HUDCaching",

@@ -151,6 +151,7 @@ public class ClassTransformer implements IClassTransformer {
         registerTransformer(new ModContainerFactoryTransformer());
         //#endif
         registerTransformer(new GuiIngameForgeTransformer());
+        registerTransformer(new JarDiscovererTransformer());
 
         // lwjgl
         registerTransformer(new WindowsDisplayTransformer());

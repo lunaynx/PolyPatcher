@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 @Mixin(value = ModDiscoverer.class, remap = false)
 public class ModDiscovererMixin_ReplaceRegex {
 
+    //#if MC<=10809
     @Shadow
     private static Pattern zipJar;
     @Unique
@@ -36,4 +37,6 @@ public class ModDiscovererMixin_ReplaceRegex {
     private String patcher$replaceRegex(Matcher instance, int group) {
         return patcher$fileName; // we could cut out the file extension but it's not necessary cause this is just for logging
     }
+
+    //#endif
 }

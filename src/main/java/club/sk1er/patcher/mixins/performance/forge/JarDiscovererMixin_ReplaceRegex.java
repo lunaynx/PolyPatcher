@@ -25,14 +25,16 @@ public class JarDiscovererMixin_ReplaceRegex { // todo i cba to put this in dire
 
     @Unique private String patcher$fileName;
 
-    @Redirect(method = "discover", at = @At(value = "INVOKE", target = "Ljava/util/regex/Pattern;matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;"))
+    @Redirect(method = patcher$replaceRegexMethod, at = @At(value = "INVOKE", target = "Ljava/util/regex/Pattern;matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;"))
     private Matcher patcher$replaceRegex(Pattern instance, CharSequence input) {
-        patcher$fileName = input.toString();
+        if (input != null) {
+            patcher$fileName = input.toString();
+        }
         return patcher$dummyMatcher;
     }
 
     @Redirect(method = patcher$replaceRegexMethod, at = @At(value = "INVOKE", target = "Ljava/util/regex/Matcher;matches()Z"))
     private boolean patcher$replaceRegex(Matcher instance) {
-        return patcher$fileName.endsWith(".class") && !patcher$fileName.startsWith("$") && !patcher$fileName.endsWith("$");
+        return patcher$fileName != null && patcher$fileName.endsWith(".class") && !patcher$fileName.startsWith("$") && !patcher$fileName.endsWith("$");
     }
 }
