@@ -294,3 +294,11 @@ This list may not always be up-to-date. To view an updated list, click [here](ht
 - **NoScroll**
 
 </details>
+<details>
+    <summary>License disclaimers</summary>
+
+This work, "PolyPatcher", uses code from CaffeineMC's "lithium-fabric", licensed under the LGPL-3.0 license. The original license is included in the repository.
+https://github.com/CaffeineMC/lithium-fabric/tree/develop
+https://github.com/CaffeineMC/lithium-fabric/blob/develop/LICENSE.txt
+
+</details>

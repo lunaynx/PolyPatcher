@@ -227,6 +227,7 @@
     "performance.GameSettingsMixin_RefreshMipmaps",
     "performance.GuiLanguageMixin_RefreshLanguage",
     "performance.LoadingScreenRendererMixin_SkipProgress",
+    "performance.MathHelperMixin_CompactLUT",
     "performance.MinecraftMixin_MemoryIssues",
     "performance.MinecraftMixin_OptimizedWorldSwapping",
     "performance.MinecraftMixin_SkipTwitchStuff",
