@@ -107,6 +107,13 @@ public class PatcherConfig extends Config {
     public static int keyboardLayout = 0;
 
     @Switch(
+        name = "Vanilla Held Item Lighting",
+        description = "Amends a Forge bug causing item sides to have incorrect lighting compared to Vanilla 1.8.",
+        category = "Bug Fixes", subcategory = "Forge"
+    )
+    public static boolean heldItemLighting = true;
+
+    @Switch(
         name = "Vanilla Glass Panes",
         description = "Reverts a Forge change causing Glass Panes and Iron Bars to connect where they shouldn't.",
         category = "Bug Fixes", subcategory = "Forge"
@@ -1798,6 +1805,9 @@ public class PatcherConfig extends Config {
         addListener("fullbright", reloadWorld);
         addListener("removeGroundFoliage", reloadWorld);
         addListener("vanillaGlassPanes", reloadWorld);
+
+        Runnable reloadTextures = () -> Minecraft.getMinecraft().refreshResources();
+        addListener("heldItemLighting", reloadTextures);
 
         hideIf("nauseaEffectOld", () -> true);
         hideIf("fireOverlayOpacityOld", () -> true);
