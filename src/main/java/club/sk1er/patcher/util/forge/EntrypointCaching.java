@@ -32,7 +32,7 @@ public class EntrypointCaching {
 
     public static EntrypointCaching INSTANCE = new EntrypointCaching();
 
-    private final Logger logger = LogManager.getLogger("Patcher Entrypoint Cache");
+    public final Logger logger = LogManager.getLogger("Patcher Entrypoint Cache");
     private final Type mapType = new TypeToken<List<Map<String, List<String>>>>() {}.getType();
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final File cacheFile = new File("patcher/entrypoint_cache.json");
@@ -99,30 +99,30 @@ public class EntrypointCaching {
     }
 
     private void iterateThroughClass(boolean entry, ModCandidate candidate, ASMDataTable table, JarFile file, MetadataCollection mc, File modFile, List<ModContainer> foundMods, List<String> validMods, String modClass) {
-        ASMModParser modParser;
-        try (InputStream is = file.getInputStream(new JarEntry(modClass))) {
-            modParser = new ASMModParser(is);
-            candidate.addClassEntry(modClass);
-        } catch (Exception e) {
-            logger.error("Error parsing mod class " + modClass + " from jar " + modFile, e);
-            return;
-        }
+        candidate.addClassEntry(modClass);
+
         if (entry) {
-            modParser.validate();
-            modParser.sendToTable(table, candidate);
-            ModContainer container = ModContainerFactory.instance().build(modParser, modFile, candidate);
-            if (container != null) {
-                table.addContainer(container);
-                foundMods.add(container);
-                validMods.add(modClass);
-                container.bindMetadata(mc);
-                //#if MC>10809
-                //$$ container.setClassVersion(modParser.getClassVersion());
-                //#endif
+            try (InputStream is = file.getInputStream(new JarEntry(modClass))) {
+                ASMModParser modParser = new ASMModParser(is);
+                modParser.validate();
+                modParser.sendToTable(table, candidate);
+                ModContainer container = ModContainerFactory.instance().build(modParser, modFile, candidate);
+                if (container != null) {
+                    table.addContainer(container);
+                    foundMods.add(container);
+                    validMods.add(modClass);
+                    container.bindMetadata(mc);
+                    //#if MC>10809
+                    //$$ container.setClassVersion(modParser.getClassVersion());
+                    //#endif
+                }
+            } catch (Exception e) {
+                logger.error("Error parsing mod class " + modClass + " from jar " + modFile, e);
+                return;
             }
-        } else {
-            validMods.add(modClass);
         }
+
+        validMods.add(modClass);
     }
 
     @SuppressWarnings("unused")
@@ -140,6 +140,7 @@ public class EntrypointCaching {
         logger.info("Added entrypoint {} for mod jar {}", modClass, modFile);
     }
 
+    @SuppressWarnings("unused")
     public void putCachedClassEntries(ModCandidate candidate, ZipEntry ze) {
         if (!PatcherConfig.cacheEntrypoints) return;
 
