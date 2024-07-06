@@ -8,6 +8,8 @@ package me.jellysquid.mods.lithium.common.util.math;
 
 import net.minecraft.util.MathHelper;
 
+import java.lang.reflect.Field;
+
 /**
  * A replacement for the sine angle lookup table used in {@link MathHelper}, both reducing the size of LUT and improving
  * the access patterns for common paired sin/cos operations.
@@ -39,16 +41,36 @@ public class CompactSineLUT {
     private static final float SINE_TABLE_MIDPOINT;
 
     static {
+        float[] SINE_TABLE;
+        try {
+            Field field;
+            try {
+                field = MathHelper.class.getDeclaredField("SIN_TABLE");
+            } catch (NoSuchFieldException e) {
+                // 1.17 mappings
+                field = MathHelper.class.getDeclaredField("field_76144_a");
+            }
+            field.setAccessible(true);
+            SINE_TABLE = (float[]) field.get(null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            // taking this into our own hands
+            SINE_TABLE = new float[65536];
+            int i;
+            for (i = 0; i < 65536; ++i) {
+                SINE_TABLE[i] = (float)Math.sin((double)i * Math.PI * 2.0 / 65536.0);
+            }
+        }
         // Copy the sine table, covering to raw int bits
         for (int i = 0; i < SINE_TABLE_INT.length; i++) {
-            SINE_TABLE_INT[i] = Float.floatToRawIntBits(MathHelper.SIN_TABLE[i]);
+            SINE_TABLE_INT[i] = Float.floatToRawIntBits(SINE_TABLE[i]);
         }
 
-        SINE_TABLE_MIDPOINT = MathHelper.SIN_TABLE[MathHelper.SIN_TABLE.length / 2];
+        SINE_TABLE_MIDPOINT = SINE_TABLE[SINE_TABLE.length / 2];
 
         // Test that the lookup table is correct during runtime
-        for (int i = 0; i < MathHelper.SIN_TABLE.length; i++) {
-            float expected = MathHelper.SIN_TABLE[i];
+        for (int i = 0; i < SINE_TABLE.length; i++) {
+            float expected = SINE_TABLE[i];
             float value = lookup(i);
 
             if (expected != value) {
