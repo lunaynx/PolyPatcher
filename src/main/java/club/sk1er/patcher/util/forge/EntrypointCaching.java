@@ -1,5 +1,6 @@
 package club.sk1er.patcher.util.forge;
 
+import cc.polyfrost.oneconfig.utils.Notifications;
 import club.sk1er.patcher.config.PatcherConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
@@ -69,7 +70,7 @@ public class EntrypointCaching {
 
         List<ModContainer> foundMods = new ArrayList<>();
         List<String> validEntries = null;
-        if (entryClasses != null) {
+        if (entryClasses != null && !entryClasses.isEmpty()) {
             validEntries = new ArrayList<>(entryClasses.size());
             for (String modClass : entryClasses) {
                 iterateThroughClass(true, candidate, table, file, mc, modFile, foundMods, validEntries, modClass);
@@ -77,7 +78,7 @@ public class EntrypointCaching {
         }
 
         List<String> validClasses = null;
-        if (modClasses != null) {
+        if (modClasses != null && !modClasses.isEmpty()) {
             validClasses = new ArrayList<>(modClasses.size());
             for (String modClass : modClasses) {
                 iterateThroughClass(false, candidate, table, file, mc, modFile, foundMods, validClasses, modClass);
@@ -92,8 +93,8 @@ public class EntrypointCaching {
             logger.error("Error closing mod jar " + modFile, e);
         }
 
-        usedMap.get(0).put(hash, (validEntries == null ? new ArrayList<>() : validEntries));
-        usedMap.get(1).put(hash, (validClasses == null ? new ArrayList<>() : validClasses));
+        usedMap.get(0).put(hash, (validEntries));
+        usedMap.get(1).put(hash, (validClasses));
 
         return foundMods;
     }
@@ -118,11 +119,10 @@ public class EntrypointCaching {
                 }
             } catch (Exception e) {
                 logger.error("Error parsing mod class " + modClass + " from jar " + modFile, e);
-                return;
             }
+        } else {
+            validMods.add(modClass);
         }
-
-        validMods.add(modClass);
     }
 
     @SuppressWarnings("unused")
@@ -203,5 +203,17 @@ public class EntrypointCaching {
             logger.error("Error hashing mod {}", modFile, e);
         }
         return null;
+    }
+
+    public void resetCache() {
+        if (cacheFile.exists()) {
+            if (cacheFile.delete()) {
+                Notifications.INSTANCE.send("PolyPatcher", "Deleted entrypoint cache", 5000);
+                logger.info("Deleted entrypoint cache");
+            } else {
+                Notifications.INSTANCE.send("PolyPatcher", "Failed to delete entrypoint cache!", 5000);
+                logger.error("Failed to delete entrypoint cache");
+            }
+        }
     }
 }

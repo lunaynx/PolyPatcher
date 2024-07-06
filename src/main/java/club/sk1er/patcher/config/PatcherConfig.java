@@ -11,6 +11,7 @@ import cc.polyfrost.oneconfig.config.migration.VigilanceMigrator;
 import cc.polyfrost.oneconfig.config.migration.VigilanceName;
 import club.sk1er.patcher.Patcher;
 import club.sk1er.patcher.tweaker.ClassTransformer;
+import club.sk1er.patcher.util.forge.EntrypointCaching;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeVersion;
 import org.apache.commons.io.FileUtils;
@@ -1309,6 +1310,16 @@ public class PatcherConfig extends Config {
         category = "Experimental", subcategory = "Mod Discovery"
     )
     public static boolean cacheEntrypoints = true;
+
+    @Button(
+        name = "Reset Cache",
+        description = "Reset the cache of Forge mod entry points.",
+        category = "Experimental", subcategory = "Mod Discovery",
+        text = "Reset"
+    )
+    public static void resetCache() {
+        EntrypointCaching.INSTANCE.resetCache();
+    }
 
     @Info(
         text = "Improved Skin Rendering can make some skins invisible. It requires a restart once toggled.",
