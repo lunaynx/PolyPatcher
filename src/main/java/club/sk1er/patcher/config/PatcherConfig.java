@@ -1295,13 +1295,13 @@ public class PatcherConfig extends Config {
 
     // EXPERIMENTAL
 
-    /*Switch(
+    @Switch(
         name = "Cache Entrypoints",
         description = "Cache Forge mod entry points, improving startup time as Forge no longer needs to walk through " +
             "every class to find the @Mod annotation.",
         category = "Experimental", subcategory = "Mod Discovery"
     )
-    public static boolean cacheEntrypoints = true;*/
+    public static boolean cacheEntrypoints = true;
 
     @Info(
         text = "Improved Skin Rendering can make some skins invisible. It requires a restart once toggled.",
