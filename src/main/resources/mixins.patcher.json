@@ -263,6 +263,7 @@
     "performance.network.packet.C17PacketCustomPayloadMixin_MemoryLeak",
     "performance.network.packet.S3FPacketCustomPayloadMixin_MemoryLeak",
     "performance.optifine.GameSettingsMixin_RefreshOFMipmaps",
+    "performance.optifine.MathHelperMixin_OFFastMath",
     "performance.render.item.ItemStackMixin_CacheDisplayName"
   ]
 }
