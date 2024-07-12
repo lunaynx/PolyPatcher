@@ -226,6 +226,7 @@
     "performance.GameRulesValueMixin_Optimization",
     "performance.GameSettingsMixin_RefreshMipmaps",
     "performance.GuiLanguageMixin_RefreshLanguage",
+    "performance.ItemStackMixin_TooltipCache",
     "performance.LoadingScreenRendererMixin_SkipProgress",
     "performance.MathHelperMixin_CompactLUT",
     "performance.MinecraftMixin_MemoryIssues",
