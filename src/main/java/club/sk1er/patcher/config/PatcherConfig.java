@@ -1994,7 +1994,7 @@ public class PatcherConfig extends Config {
             Arrays.asList(
                 "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "cactusHitboxExclusion", "farmSelectionBoxesInfo",
                 "leftHandInFirstPerson", "extendedChatLength", "chatPosition",
-                "parallaxFix", "extendChatBackground", "vanillaGlassPanes"
+                "parallaxFix", "extendChatBackground", "vanillaGlassPanes", "heldItemLighting"
             ).forEach(property -> hideIf(property, minecraft112));
 
             hideIf("keyboardLayout", () -> !SystemUtils.IS_OS_LINUX);
