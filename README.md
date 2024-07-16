@@ -233,6 +233,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - Boost performance by optimizing adding normals to vertex formats
 - Boost performance by unloading tile entities quickly
 - Improve speed when changing language, mipmap level, and anisotropic filtering level
+- Reduce memory usage of model transformations
 - Fix Forge held item lighting to match vanilla
 - Fix vanilla bug where entering an entity in spectator mode while in third person applies shaders
 - Fix vanilla bug where enchantment glint takes up the whole slot
