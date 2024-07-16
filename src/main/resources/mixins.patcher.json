@@ -78,6 +78,7 @@
     "bugfixes.MinecraftMixin_PersistentShaders",
     "bugfixes.NetHandlerPlayClientMixin_FixHandleSpawnPlayerNPE",
     "bugfixes.NetHandlerPlayClientMixin_FixTileEntityNPE",
+    "bugfixes.RenderGlobalMixin_RenderOobEntities",
     "bugfixes.RenderManagerMixin_PerspectiveViewFix",
     "bugfixes.RenderPlayerMixin_ArmPosition",
     "bugfixes.ScoreboardMixin_FixLogSpam",
