@@ -535,10 +535,18 @@ public class PatcherConfig extends Config {
     )
     public static boolean futureHitBoxes = true;
 
+    @Info(
+        text = "Exclude Cacti from 1.12 Boxes requires a restart once toggled.",
+        category = "Miscellaneous", subcategory = "Blocks",
+        type = InfoType.WARNING,
+        size = 2
+    )
+    private static boolean cactusHitboxExclusionInfo = true;
+
     @Switch(
         name = "Exclude Cacti from 1.12 Boxes",
         description = "Exclude cacti from the 1.12 selection box changes, as it would actually shrink rather than increase in size.",
-        category = "Miscellaneous", subcategory = "Blocks"
+        category = "Miscellaneous", subcategory = "Blocks", size = 2
     )
     public static boolean cactusHitboxExclusion = true;
 
@@ -1977,7 +1985,7 @@ public class PatcherConfig extends Config {
             //noinspection ConstantConditions
             Supplier<Boolean> minecraft112 = () -> ForgeVersion.mcVersion.equals("1.12.2");
             Arrays.asList(
-                "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "cactusHitboxExclusion", "farmSelectionBoxesInfo",
+                "resourceExploitFix", "newKeybindHandling", "separateResourceLoading", "futureHitBoxes", "cactusHitboxExclusion", "farmSelectionBoxesInfo", "cactusHitboxExclusionInfo",
                 "leftHandInFirstPerson", "extendedChatLength", "chatPosition",
                 "parallaxFix", "extendChatBackground", "vanillaGlassPanes", "heldItemLighting"
             ).forEach(property -> hideIf(property, minecraft112));
