@@ -90,6 +90,7 @@
     "bugfixes.UtilMixin_StopLogSpam",
     "bugfixes.VertexBufferMixin_ResolveLockups",
     "bugfixes.WorldMixin_SkyHeight",
+    "bugfixes.WorldRendererMixin_GrowBuffer",
     "bugfixes.crashes.EntityLivingBaseMixin_ResolveCrash",
     "bugfixes.crashes.GameSettingsMixin_ResolveCrash",
     "bugfixes.crashes.GuiScreenMixin_ResolveCrash",
