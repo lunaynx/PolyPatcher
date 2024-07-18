@@ -1,5 +1,6 @@
 package club.sk1er.patcher.mixins.bugfixes;
 
+import club.sk1er.patcher.config.PatcherConfig;
 import club.sk1er.patcher.ducks.EntityExt;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -44,7 +45,7 @@ public class RenderGlobalMixin_FixGlow implements EntityExt {
         boolean flag = viewer instanceof EntityLivingBase && ((EntityLivingBase)viewer).isPlayerSleeping();
         if (entityIn == viewer && this.mc.gameSettings.thirdPersonView == 0 && !flag) {
             return false;
-        } else if (((EntityExt) entityIn).patcher$isGlowing()) {
+        } else if (((EntityExt) entityIn).patcher$isGlowing() && PatcherConfig.entityOutlines) {
             return true;
         } else {
             return this.mc.thePlayer.isSpectator() && this.mc.gameSettings.keyBindSpectatorOutlines.isKeyDown() && entityIn instanceof EntityPlayer
