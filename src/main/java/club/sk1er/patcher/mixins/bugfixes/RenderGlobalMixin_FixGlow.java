@@ -36,7 +36,6 @@ public class RenderGlobalMixin_FixGlow implements EntityExt {
     private boolean patcher$forceInPass(Entity instance, int pass, Entity renderViewEntity, ICamera camera, float partialTicks) {
         if (patcher$isOutlineActive(instance, renderViewEntity, camera)) return true;
         else return instance.shouldRenderInPass(pass);
-
     }
 
     @Unique
