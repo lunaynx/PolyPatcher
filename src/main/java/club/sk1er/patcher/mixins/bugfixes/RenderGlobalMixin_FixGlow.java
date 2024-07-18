@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(RenderGlobal.class)
 public class RenderGlobalMixin_FixGlow implements EntityExt {
+    //#if MC==10809
     @Shadow
     @Final
     private Minecraft mc;
@@ -53,4 +54,5 @@ public class RenderGlobalMixin_FixGlow implements EntityExt {
                 : false;
         }
     }
+    //#endif
 }

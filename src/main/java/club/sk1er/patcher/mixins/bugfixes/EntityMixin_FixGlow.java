@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin_FixGlow implements EntityExt {
+    //#if MC == 10809
     @Shadow
     protected abstract boolean getFlag(int flag);
     @Shadow
@@ -41,4 +42,5 @@ public abstract class EntityMixin_FixGlow implements EntityExt {
     private void patcher$setGlowingState(NBTTagCompound tagCompund, CallbackInfo ci) {
         patcher$setGlowing(tagCompund.getBoolean("Glowing"));
     }
+    //#endif
 }
