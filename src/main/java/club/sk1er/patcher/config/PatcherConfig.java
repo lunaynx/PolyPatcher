@@ -1326,7 +1326,7 @@ public class PatcherConfig extends Config {
     private static boolean cacheEntrypointsInfo = true;
 
     @Switch(
-        name = "Cache Entrypoints",
+        name = "Entrypoint Caching",
         description = "Cache Forge mod entry points, improving startup time as Forge no longer needs to walk through " +
             "every class to find the @Mod annotation.",
         category = "Experimental", subcategory = "Forge"
