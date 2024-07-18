@@ -245,6 +245,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - Fix vanilla sky lighting calculation
 - Fix texture manager memory leak
 - Fix compatability with LoliASM/CensoredASM
+- Backport entity glow effect
 - Add ability to change HUD Caching FPS
 - Add "Natural Capes" feature
 - Add "Pumpkin Overlay Opacity"
