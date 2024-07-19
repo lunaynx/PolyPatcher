@@ -340,11 +340,11 @@ public class PatcherConfig extends Config {
     public static boolean removeGroundFoliage;
 
     @Switch(
-        name = "Backport 1.9+ Entity Outlines",
+        name = "1.9+ Entity Outlines",
         description = "Port the 1.9+ entity outline system to 1.8, rendering a glow effect around entities.",
         category = "Miscellaneous", subcategory = "Rendering"
     )
-    public static boolean entityOutlines = true;
+    public static boolean entityOutlines = false;
 
     @Switch(
         name = "Clean Projectiles",
