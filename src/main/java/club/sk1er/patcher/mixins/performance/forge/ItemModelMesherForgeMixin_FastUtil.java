@@ -12,11 +12,8 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.ItemModelMesherForge;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 
@@ -32,14 +29,22 @@ public class ItemModelMesherForgeMixin_FastUtil extends ItemModelMesher {
     @Unique
     final Map<Item, Int2ObjectMap<IBakedModel>> patcher$models = Maps.newIdentityHashMap();
 
-    @Inject(method = "getItemModel", at = @At("HEAD"), cancellable = true)
-    private void patcher$fastUtilGetModel(Item item, int meta, CallbackInfoReturnable<IBakedModel> cir) {
+    /**
+     * @author MicrocontrollersDev
+     * @reason FastUtil
+     */
+    @Overwrite
+    protected IBakedModel getItemModel(Item item, int meta) {
         Int2ObjectMap<IBakedModel> map = patcher$models.get(item);
-        cir.setReturnValue(map == null ? null : map.get(meta));
+        return map == null ? null : map.get(meta);
     }
 
-    @Inject(method = "register", at = @At("HEAD"), cancellable = true)
-    private void patcher$fastUtilRegisterModel(Item item, int meta, ModelResourceLocation location, CallbackInfo ci) {
+    /**
+     * @author MicrocontrollersDev
+     * @reason FastUtil
+     */
+    @Overwrite
+    public void register(Item item, int meta, ModelResourceLocation location) {
         Int2ObjectMap<ModelResourceLocation> locs = patcher$locations.get(item);
         Int2ObjectMap<IBakedModel>           mods = patcher$models.get(item);
         if (locs == null) {
@@ -52,11 +57,14 @@ public class ItemModelMesherForgeMixin_FastUtil extends ItemModelMesher {
         }
         locs.put(meta, location);
         mods.put(meta, this.getModelManager().getModel(location));
-        ci.cancel();
     }
 
-    @Inject(method = "rebuildCache", at = @At("HEAD"), cancellable = true)
-    private void patcher$fastUtilRebuildCache(CallbackInfo ci) {
+    /**
+     * @author MicrocontrollersDev
+     * @reason FastUtil
+     */
+    @Overwrite
+    public void rebuildCache() {
         final ModelManager manager = this.getModelManager();
             for (Map.Entry<Item, Int2ObjectMap<ModelResourceLocation>> e : patcher$locations.entrySet()) {
             Int2ObjectMap<IBakedModel> mods = patcher$models.get(e.getKey());
@@ -72,7 +80,6 @@ public class ItemModelMesherForgeMixin_FastUtil extends ItemModelMesher {
                 map.put(entry.getIntKey(), manager.getModel(entry.getValue()));
             }
         }
-        ci.cancel();
     }
     //#endif
 }
