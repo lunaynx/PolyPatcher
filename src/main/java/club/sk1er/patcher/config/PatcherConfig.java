@@ -1348,16 +1348,6 @@ public class PatcherConfig extends Config {
     )
     private static boolean removeEventDebugInfo = true;
 
-    @Switch(
-        name = "Replace Forge Event Bus with KEventBus",
-        description = "Replace the Forge event bus with KEventBus, a more optimized event bus.",
-        category = "Experimental", subcategory = "Forge"
-    )
-    public static boolean replaceForgeEventBus = true;
-
-    @Exclude
-    public static boolean actuallyReplaceForgeEventBus = true;
-
     @Info(
         text = "Improved Skin Rendering can make some skins invisible. It requires a restart once toggled.",
         category = "Experimental", subcategory = "Skin Rendering",
@@ -1830,8 +1820,6 @@ public class PatcherConfig extends Config {
     public PatcherConfig() {
         super(new Mod("PolyPatcher", ModType.UTIL_QOL, "/patcher.svg", new VigilanceMigrator("./config/patcher.toml")), "patcher.json");
         initialize();
-
-        actuallyReplaceForgeEventBus = replaceForgeEventBus;
 
         boolean modified = false;
 
