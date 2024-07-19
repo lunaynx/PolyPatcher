@@ -5,7 +5,7 @@ import club.sk1er.patcher.mixins.accessors.EventBusAccessor;
 import club.sk1er.patcher.util.chat.ChatUtilities;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import me.kbrewster.eventbus.forge.KEventBus;
-import me.kbrewster.eventbus.forge.invokers.LMFInvoker;
+import me.kbrewster.eventbus.forge.invokers.DirectInvoker;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventBusBenchmark {
-    private static class EventBusTestEvent extends Event {
+    public static class EventBusTestEvent extends Event {
         public EventBusTestEvent() {
             super();
         }
     }
-    private static class EventBusTest {
+    public static class EventBusTest {
         @SubscribeEvent
         public void testEvent(EventBusTestEvent event) {
 
@@ -100,7 +100,7 @@ public class EventBusBenchmark {
     private static void runTest(List<String> messages, LongPair registerTimes, LongPair postTimes, LongPair unregisterTimes) {
         ObjectArrayList<EventBusTest> keventbusListeners = new ObjectArrayList<>(10_000);
         ObjectArrayList<EventBusTest> forgeListeners = new ObjectArrayList<>(10_000);
-        final KEventBus patcher$kEventBus = new KEventBus(new LMFInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()));
+        final KEventBus patcher$kEventBus = new KEventBus(new DirectInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()), false);
         final EventBus forgeEventBus = new EventBus();
         final EventBusAccessor forgeEventBusAccessor = (EventBusAccessor) forgeEventBus;
 

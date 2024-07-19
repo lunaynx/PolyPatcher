@@ -2,7 +2,7 @@ package club.sk1er.patcher.mixins.performance.forge;
 
 import club.sk1er.patcher.config.PatcherConfig;
 import me.kbrewster.eventbus.forge.KEventBus;
-import me.kbrewster.eventbus.forge.invokers.LMFInvoker;
+import me.kbrewster.eventbus.forge.invokers.DirectInvoker;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import org.spongepowered.asm.mixin.Final;
@@ -20,7 +20,7 @@ public class EventBusMixin_UseKeventBus {
     @Final
     private int busID;
     @Unique
-    private final KEventBus patcher$kEventBus = new KEventBus(new LMFInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()));
+    private final KEventBus patcher$kEventBus = new KEventBus(new DirectInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()), false);
 
     @Inject(method = "register(Ljava/lang/Object;)V", at = @At("HEAD"), cancellable = true)
     private void patcher$registerKevent(Object target, CallbackInfo ci) {
