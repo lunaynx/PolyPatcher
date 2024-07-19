@@ -9,9 +9,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(value = OBJLoader.class, remap = false)
 public class OBJLoaderMixin_UnclosedStream {
@@ -20,9 +19,10 @@ public class OBJLoaderMixin_UnclosedStream {
     private IResource patcher$resource;
 
     // for some reason localcapture doesn't work here, so let's just store it locally like this
-    @ModifyArgs(method = "loadModel", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/model/obj/OBJModel$Parser;<init>(Lnet/minecraft/client/resources/IResource;Lnet/minecraft/client/resources/IResourceManager;)V"))
-    private void patcher$getStream(Args args) {
-        this.patcher$resource = args.get(0);
+    @ModifyArg(method = "loadModel", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/model/obj/OBJModel$Parser;<init>(Lnet/minecraft/client/resources/IResource;Lnet/minecraft/client/resources/IResourceManager;)V"), index = 0)
+    private IResource patcher$getStream(IResource from) {
+        this.patcher$resource = from;
+        return from;
     }
 
     @Inject(method = "loadModel", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"))
