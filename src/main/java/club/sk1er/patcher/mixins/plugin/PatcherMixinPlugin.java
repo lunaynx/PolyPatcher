@@ -17,6 +17,7 @@ public class PatcherMixinPlugin implements IMixinConfigPlugin {
 
     private static final ArrayListMultimap<String, String> CONFLICTING_CLASSES = ArrayListMultimap.create();
     private static boolean isEarsMod = false;
+    private static final boolean enableKeventBus = System.getProperty("patcher.keventbus") == null || (System.getProperty("patcher.keventbus").equals("true") ? true : false);
 
     static {
         MixinEnvironment.getDefaultEnvironment().addTransformerExclusion("com.unascribed.ears.asm.PlatformTransformerAdapter");
@@ -44,6 +45,9 @@ public class PatcherMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.endsWith("_EarsMod")) {
             return isEarsMod;
+        }
+        if (mixinClassName.endsWith("KeventBus")) {
+            return enableKeventBus;
         }
         String mixinPackage = StringsKt.substringBeforeLast(mixinClassName, '.', mixinClassName);
         if (mixinPackage.endsWith("optifine") && "NONE".equals(ClassTransformer.optifineVersion)) {
