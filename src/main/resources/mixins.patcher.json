@@ -280,6 +280,8 @@
     "performance.forge.LightUtilMixin_OptimizeNormals",
     "performance.forge.ModDiscovererMixin_Logging",
     "performance.forge.ModDiscovererMixin_ReplaceRegex",
+    "performance.forge.OBJLoaderMixin_UnclosedStream",
+    "performance.forge.OBJModelMixin_UnclosedStreams",
     "performance.forge.ModelLoaderMixin_SkipFatalModels",
     "performance.forge.SidedInvWrapperMixin_ImproveInsertion",
     "performance.forge.TRSRTransformationMixin_OptimizeTransforms",
