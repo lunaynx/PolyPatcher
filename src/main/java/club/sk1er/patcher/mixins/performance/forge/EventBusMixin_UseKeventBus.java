@@ -20,12 +20,12 @@ public class EventBusMixin_UseKeventBus {
     @Final
     private int busID;
     @Unique
-    private final KEventBus patcher$kEventBus = new KEventBus(new DirectInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()), false);
+    private final KEventBus patcher$kEventBus = new KEventBus(new DirectInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()), false, busID);
 
     @Inject(method = "register(Ljava/lang/Object;)V", at = @At("HEAD"), cancellable = true)
     private void patcher$registerKevent(Object target, CallbackInfo ci) {
         if (PatcherConfig.actuallyReplaceForgeEventBus) {
-            patcher$kEventBus.register(target, busID);
+            patcher$kEventBus.register(target);
             ci.cancel();
         }
     }
@@ -33,7 +33,7 @@ public class EventBusMixin_UseKeventBus {
     @Inject(method = "unregister", at = @At("HEAD"), cancellable = true)
     private void patcher$unregister(Object target, CallbackInfo ci) {
         if (PatcherConfig.actuallyReplaceForgeEventBus) {
-            patcher$kEventBus.unregister(target, busID);
+            patcher$kEventBus.unregister(target);
             ci.cancel();
         }
     }

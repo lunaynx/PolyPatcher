@@ -100,14 +100,14 @@ public class EventBusBenchmark {
     private static void runTest(List<String> messages, LongPair registerTimes, LongPair postTimes, LongPair unregisterTimes) {
         ObjectArrayList<EventBusTest> keventbusListeners = new ObjectArrayList<>(10_000);
         ObjectArrayList<EventBusTest> forgeListeners = new ObjectArrayList<>(10_000);
-        final KEventBus patcher$kEventBus = new KEventBus(new DirectInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()), false);
         final EventBus forgeEventBus = new EventBus();
         final EventBusAccessor forgeEventBusAccessor = (EventBusAccessor) forgeEventBus;
+        final KEventBus patcher$kEventBus = new KEventBus(new DirectInvoker(), e -> System.err.println("An exception occurred in a method: " + e.getMessage()), false, forgeEventBusAccessor.getBusID());
 
         long start = System.nanoTime();
         for (int i = 0; i < 10_000; i++) {
             EventBusTest listener = new EventBusTest();
-            patcher$kEventBus.register(listener, forgeEventBusAccessor.getBusID());
+            patcher$kEventBus.register(listener);
             keventbusListeners.add(listener);
         }
         long total1 = (System.nanoTime() - start) / 1_000_000;
@@ -150,7 +150,7 @@ public class EventBusBenchmark {
 
         start = System.nanoTime();
         for (EventBusTest listener : keventbusListeners) {
-            patcher$kEventBus.unregister(listener, forgeEventBusAccessor.getBusID());
+            patcher$kEventBus.unregister(listener);
         }
         long total5 = (System.nanoTime() - start) / 1_000_000;
         unregisterTimes.first = total5;
