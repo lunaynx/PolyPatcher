@@ -59,14 +59,13 @@ public class FovHandler {
         //$$ ItemStack item = entity.getActiveItemStack();
         //$$ int useDuration = entity.getItemInUseMaxCount();
         //#endif
-        if (entity.isSprinting()) {
-            base += 0.15000000596046448 * PatcherConfig.sprintingFovModifierFloat;
+
+        if (entity.capabilities.isFlying) {
+            base *= 1.1F * PatcherConfig.flyingFovModifierFloat;
         }
 
-        if (item != null && item.getItem() == Items.bow) {
-            int duration = (int) Math.min(useDuration, MAX_BOW_TICKS);
-            float modifier = MODIFIER_BY_TICK.get(duration);
-            base -= modifier * PatcherConfig.bowFovModifierFloat;
+        if (entity.isSprinting()) {
+            base += 0.15000000596046448F * PatcherConfig.sprintingFovModifierFloat;
         }
 
         Collection<PotionEffect> effects = entity.getActivePotionEffects();
@@ -75,11 +74,11 @@ public class FovHandler {
                 //#if MC==10809
                 int potionID = effect.getPotionID();
                 if (potionID == 1) {
-                    base += MODIFIER_SPEED * (effect.getAmplifier() + 1) * PatcherConfig.speedFovModifierFloat;
+                    base += MODIFIER_SPEED * (effect.getAmplifier() + 1F) * PatcherConfig.speedFovModifierFloat;
                 }
 
                 if (potionID == 2) {
-                    base += MODIFIER_SLOWNESS * (effect.getAmplifier() + 1) * PatcherConfig.slownessFovModifierFloat;
+                    base += MODIFIER_SLOWNESS * (effect.getAmplifier() + 1F) * PatcherConfig.slownessFovModifierFloat;
                 }
                 //#else
                 //$$ Potion potion = effect.getPotion();
@@ -92,6 +91,16 @@ public class FovHandler {
                 //$$ }
                 //#endif
             }
+        }
+
+        if (Float.isNaN(base) || Float.isInfinite(base)) {
+            base = 1.0F;
+        }
+
+        if (item != null && item.getItem() == Items.bow) {
+            int duration = (int) Math.min(useDuration, MAX_BOW_TICKS);
+            float modifier = MODIFIER_BY_TICK.get(duration);
+            base -= modifier * PatcherConfig.bowFovModifierFloat;
         }
 
         //#if MC==10809

@@ -256,6 +256,14 @@ public class PatcherConfig extends Config {
     public static float sprintingFovModifierFloat = 1;
 
     @Slider(
+        name = "Flying FOV",
+        description = "Modify your FOV when flying.",
+        category = "Miscellaneous", subcategory = "Field of View",
+        min = -5F, max = 5F
+    )
+    public static float flyingFovModifierFloat = 1;
+
+    @Slider(
         name = "Bow FOV",
         description = "Modify your FOV when pulling back a bow.",
         category = "Miscellaneous", subcategory = "Field of View",
@@ -1958,7 +1966,8 @@ public class PatcherConfig extends Config {
 
             Arrays.asList(
                 "slownessFovModifierFloat", "speedFovModifierFloat",
-                "bowFovModifierFloat", "sprintingFovModifierFloat"
+                "bowFovModifierFloat", "sprintingFovModifierFloat",
+                "flyingFovModifierFloat"
             ).forEach(property -> addDependency(property, "allowFovModifying"));
 
             addDependency("logOptimizerLength", "logOptimizer");
