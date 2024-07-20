@@ -74,20 +74,20 @@ public class FovHandler {
                 //#if MC==10809
                 int potionID = effect.getPotionID();
                 if (potionID == 1) {
-                    base += MODIFIER_SPEED * (effect.getAmplifier() + 1F) * PatcherConfig.speedFovModifierFloat;
+                    base += MODIFIER_SPEED * ((effect.getAmplifier() & 0xFF) + 1F) * PatcherConfig.speedFovModifierFloat;
                 }
 
                 if (potionID == 2) {
-                    base += MODIFIER_SLOWNESS * (effect.getAmplifier() + 1F) * PatcherConfig.slownessFovModifierFloat;
+                    base += MODIFIER_SLOWNESS * ((effect.getAmplifier() & 0xFF) + 1F) * PatcherConfig.slownessFovModifierFloat;
                 }
                 //#else
                 //$$ Potion potion = effect.getPotion();
                 //$$ if (potion == MobEffects.SPEED) {
-                //$$    base += MODIFIER_SPEED * (effect.getAmplifier() + 1) * PatcherConfig.speedFovModifierFloat;
+                //$$    base += MODIFIER_SPEED * ((effect.getAmplifier() & 0xFF) + 1) * PatcherConfig.speedFovModifierFloat;
                 //$$ }
                 //$$
                 //$$ if (potion == MobEffects.SLOWNESS) {
-                //$$    base += MODIFIER_SLOWNESS * (effect.getAmplifier() + 1) * PatcherConfig.slownessFovModifierFloat;
+                //$$    base += MODIFIER_SLOWNESS * ((effect.getAmplifier() & 0xFF) + 1) * PatcherConfig.slownessFovModifierFloat;
                 //$$ }
                 //#endif
             }
