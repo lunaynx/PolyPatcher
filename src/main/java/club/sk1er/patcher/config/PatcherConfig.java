@@ -1342,13 +1342,6 @@ public class PatcherConfig extends Config {
     public static Runnable resetCache = () -> EntrypointCaching.INSTANCE.resetCache();
 
     @Info(
-        text = "This will remove the debug message on event exceptions, making it harder to debug issues. In addition, this will only apply on restart.",
-        category = "Experimental", subcategory = "Forge",
-        type = InfoType.WARNING, size = 2
-    )
-    private static boolean removeEventDebugInfo = true;
-
-    @Info(
         text = "Improved Skin Rendering can make some skins invisible. It requires a restart once toggled.",
         category = "Experimental", subcategory = "Skin Rendering",
         type = InfoType.WARNING, size = 2
@@ -1980,7 +1973,8 @@ public class PatcherConfig extends Config {
 
             Arrays.asList(
                 "entityRenderDistance", "playerRenderDistance",
-                "passiveEntityRenderDistance", "hostileEntityRenderDistance"
+                "passiveEntityRenderDistance", "hostileEntityRenderDistance",
+                "tileEntityRenderDistance"
             ).forEach(property -> addDependency(property, "entityRenderDistanceToggle"));
 
             addDependency("cacheFontData", "optimizedFontRenderer");
