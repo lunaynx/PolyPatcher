@@ -121,10 +121,6 @@ dependencies {
         shade("it.unimi.dsi:fastutil:8.5.11")
     }
 
-    shade("org.polyfrost:keventbus-forge:1.0.3") {
-        isTransitive = false
-    }
-
     modRuntimeOnly("me.djtheredstoner:DevAuth-${if (platform.isFabric) "fabric" else if (platform.isLegacyForge) "forge-legacy" else "forge-latest"}:1.2.0")
 
     // If we are building for legacy forge, includes the launch wrapper with `shade` as we configured earlier.

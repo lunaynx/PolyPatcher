@@ -264,7 +264,6 @@
     "performance.WorldMixin_FixEarlyLightInitialization",
     "performance.WorldMixin_TileEntityUnload",
     "performance.forge.ASMDataTableMixin_ComputeParallel",
-    "performance.forge.EventBusMixin_UseKeventBus",
     "performance.forge.ExtendedBlockStateMixin_FasterCreateState",
     "performance.forge.FluidRegistryMixin_Optimization",
     "performance.forge.FMLClientHandlerMixin_GetErrors",
