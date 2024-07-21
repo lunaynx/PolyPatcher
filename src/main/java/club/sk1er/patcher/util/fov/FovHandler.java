@@ -61,7 +61,7 @@ public class FovHandler {
         //#endif
 
         if (entity.capabilities.isFlying) {
-            base *= 1.1F * PatcherConfig.flyingFovModifierFloat;
+            base += 0.1F * PatcherConfig.flyingFovModifierFloat;
         }
 
         if (entity.isSprinting()) {
