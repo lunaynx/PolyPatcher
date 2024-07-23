@@ -749,7 +749,7 @@ public class PatcherConfig extends Config {
 
     @Switch(
         name = "Disable Grounded Arrows",
-        description = "Stop arrows that are in the ground from rendering, regardless of state.",
+        description = "Stop arrows that are in the ground from rendering.",
         category = "Performance", subcategory = "Entity Rendering"
     )
     public static boolean disableGroundedArrows;
