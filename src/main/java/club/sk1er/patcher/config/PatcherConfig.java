@@ -73,10 +73,23 @@ public class PatcherConfig extends Config {
     @Switch(
         name = "Player Void Rendering",
         description = "Resolve the black box around the player while in the void.",
-        category = "Bug Fixes", subcategory = "Rendering",
-        size = 2
+        category = "Bug Fixes", subcategory = "Rendering", size = 2
     )
     public static boolean playerVoidRendering = true;
+
+    @Info(
+        text = "OptiFine Custom Sky Fix also changes the rendering of the normal sky. Some people may prefer the original rendering.",
+        category = "Bug Fixes", subcategory = "Rendering",
+        type = InfoType.WARNING, size = 2
+    )
+    private static String customSkyFixInfo = "";
+
+    @Switch(
+        name = "OptiFine Custom Sky Fix",
+        description = "Resolve OptiFine creating a \"black box\" effect at the bottom of the sky when using custom skies.",
+        category = "Bug Fixes", subcategory = "Rendering", size = 2
+    )
+    public static boolean customSkyFix = true;
 
     @Info(
         text = "Alex Arm Position requires a restart once toggled.",
@@ -1988,7 +2001,7 @@ public class PatcherConfig extends Config {
                 "scrollToZoom", "normalZoomSensitivity", "customZoomSensitivity", "smoothZoomAnimation",
                 "smoothZoomAnimationWhenScrolling", "smoothZoomAlgorithm", "toggleToZoom", "normalFpsCounter",
                 "useVanillaMetricsRenderer", "renderHandWhenZoomed", "smartFullbright", "smartEntityCulling",
-                "dynamicZoomSensitivity"
+                "dynamicZoomSensitivity", "customSkyFix"
             ).forEach(property -> hideIf(property, noOptiFine));
 
             Supplier<Boolean> smoothFontDetected = () -> ClassTransformer.smoothFontDetected;
