@@ -2,6 +2,7 @@ package club.sk1er.patcher.mixins.bugfixes.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.inventory.Slot;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,6 +13,13 @@ public class GuiContainerMixin_Alpha {
 
     @Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/inventory/GuiContainer;drawGuiContainerBackgroundLayer(FII)V"))
     private void alpha(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
+        GlStateManager.enableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+    }
+
+    @Inject(method = "drawSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/inventory/GuiContainer;drawTexturedModalRect(IILnet/minecraft/client/renderer/texture/TextureAtlasSprite;II)V"))
+    private void slot(Slot slotIn, CallbackInfo ci) {
         GlStateManager.enableBlend();
         GlStateManager.enableAlpha();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
