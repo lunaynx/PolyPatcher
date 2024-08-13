@@ -21,6 +21,7 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
 - **Resource Exploit Fix** - Resolve an exploit in 1.8 allowing servers to look through directories. *default
 - **Forge Chest Behavior** - Resolve forge changing vanilla chest behavior. *default
 - **Vanilla Held Item Lighting** *(not in original)* - Amends a Forge bug causing item sides to have incorrect lighting compared to Vanilla 1.8. *default
+- **OptiFine Custom Sky Fix** *(toggle not in original)* - Resolve OptiFine creating a "black box" effect at the bottom of the sky when using custom skies. Changes the rendering of the normal sky. *default
 </details>
 <details>
   <summary>Experimental</summary>
@@ -227,6 +228,11 @@ This work, "PolyPatcher", is adapted from ["Patcher"](https://sk1er.club/mods/pa
   <summary>Changes from original mod</summary>
 
 # Changes from original mod
+
+PolyPatcher 1.10.1:
+- Add toggle for "OptiFine Custom Sky Fix"
+- Fix compatibility with NormalASM
+- Fix alpha not being set when rendering container slots
 
 PolyPatcher 1.10.0:
 - Boost performance by only rendering special tile entities once instead of twice per frame (e.g beacons)
