@@ -249,6 +249,7 @@
     "performance.RenderChunkMixin_OptimizeSpecialTileEntities",
     "performance.RenderEntityItemMixin_EntityCulling",
     "performance.RenderGlobalMixin_LimitVisGraphScan",
+    "performance.ResourceLocation_Deduplicate",
     "performance.ResourcePackRepositoryMixin_FasterSearching",
     "performance.SimpleReloadableResourceManager_OnlyRefreshNecessaryListeners",
     "performance.TexturedQuadMixin_BatchDraw",
