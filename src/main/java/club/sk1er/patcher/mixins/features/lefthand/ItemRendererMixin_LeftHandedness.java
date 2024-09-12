@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin_LeftHandedness {
-    @ModifyConstant(method = "rotateWithPlayerRotations", constant = @Constant(floatValue = 1f, ordinal = 0))
+    @ModifyConstant(method = "rotateWithPlayerRotations", constant = @Constant(floatValue = 1f, ordinal = 1))
     private float leftHandRotate(float constant) {
         return PatcherConfig.leftHandInFirstPerson ? -constant : constant;
     }
