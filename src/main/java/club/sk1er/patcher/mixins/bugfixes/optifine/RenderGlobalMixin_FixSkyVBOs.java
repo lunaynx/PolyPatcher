@@ -18,7 +18,7 @@ public class RenderGlobalMixin_FixSkyVBOs {
     private int renderDistance;
 
     @Dynamic("OptiFine")
-    @Shadow(remap = false)
+    @Shadow
     private boolean vboEnabled = false;
 
     @Dynamic("OptiFine")
